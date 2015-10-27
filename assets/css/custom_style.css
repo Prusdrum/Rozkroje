@@ -1,0 +1,12 @@
+.panel-heading {
+	cursor: pointer;
+}
+
+.initially-hidden {
+	display: none;
+}
+
+.inside-panel {
+	height: 150px;
+	overflow-y: scroll;
+}
