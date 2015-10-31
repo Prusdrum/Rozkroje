@@ -130,7 +130,31 @@ define("data-collection", function(){
 				i -= 1;
 			}
 			return null;
-		};
+		}
+		
+		function take(){
+			if (_currentInLength >= 0){
+				_currentInLength -= 1;
+				_elementsCount -= 1;
+				_mArray[_currentElementIndex].count -= 1;
+				return _mArray[_currentElementIndex].len;
+			} else {
+				return null;
+			}
+		}
+		
+		function toLongest(){
+			var i = _mArray.length - 1;
+			while (i >= 0) {
+				if (_mArray[i].count > 0){
+					_currentElementIndex = i;
+					updateIndex(i);
+					return;
+				}
+				i -= 1;
+			}
+			throw new Error();
+		}
 		
 		this.getElementsCount = getElementsCount;
 		this.getLength = getCurrentElementLength;
@@ -141,5 +165,7 @@ define("data-collection", function(){
 		this.nextLength = nextLength;
 		this.next = next;
 		this.getLongestLength = getLongestLength;
+		this.take = take;
+		this.toLongest = toLongest;
 	};
 });

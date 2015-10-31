@@ -56,39 +56,97 @@ define(['data-collection'], function(DataCollection){
 			expect(DC01.hasNextLength()).toBe(false);
 			expect(DC0.hasNextLength()).toBe(false);
 		});
-		
-		it('nextLength powinno ustawić się na następną długość gdzie count > 0. ' + 
-		'Jeżeli nie ma następnej długości nextLength zrzuci wyjątek', function(){
-			DC3.nextLength();
-			expect(DC3.getLength()).toEqual(450);
-			
-			DC0plus.nextLength();
-			expect(DC0plus.getLength()).toEqual(250);
-			
-			expect(DCnone.nextLength).toThrowError();
-			expect(DC0.nextLength).toThrowError();
+		describe('nextLength', function(){
+			it('powinno ustawić się na następną długość gdzie count > 0. ' + 
+			'Jeżeli nie ma następnej długości nextLength zrzuci wyjątek', function(){
+				DC3.nextLength();
+				expect(DC3.getLength()).toEqual(450);
+				
+				DC0plus.nextLength();
+				expect(DC0plus.getLength()).toEqual(250);
+				
+				expect(DCnone.nextLength).toThrowError();
+				expect(DC0.nextLength).toThrowError();
+			});	
 		});
 		
-		it('next powinien nawigować do następnego elementu w danej długości i zrzucić wyjątek jeżeli to był ostatni', function(){
-			DC3.nextLength();
-			expect(DC3.getLength()).toEqual(450);
-			expect(DC3.getCount()).toEqual(4);
-			expect(DC3.next).not.toThrowError();
-			expect(DC3.next).not.toThrowError();
-			expect(DC3.next).not.toThrowError();
-			expect(DC3.next).toThrowError();
-			
-			DC0plus.nextLength();
-			expect(DC0plus.next).not.toThrowError();
-			expect(DC0plus.next).toThrowError();
-			
-			expect(DCnone.next).toThrowError();
-			expect(DC01.next).toThrowError();
+		describe('next', function(){
+			it('powinien nawigować do następnego elementu w danej długości i zrzucić wyjątek jeżeli to był ostatni', function(){
+				DC3.nextLength();
+				expect(DC3.getLength()).toEqual(450);
+				expect(DC3.getCount()).toEqual(4);
+				expect(DC3.next).not.toThrowError();
+				expect(DC3.next).not.toThrowError();
+				expect(DC3.next).not.toThrowError();
+				expect(DC3.next).toThrowError();
+				
+				DC0plus.nextLength();
+				expect(DC0plus.next).not.toThrowError();
+				expect(DC0plus.next).toThrowError();
+				
+				expect(DCnone.next).toThrowError();
+				expect(DC01.next).toThrowError();
+			});			
+		});
+
+		describe('getLongestLength', function(){
+			it('powinno zwrócić najdłuższy element lub null jeśli brak', function(){
+				expect(DC3.getLongestLength()).toEqual(1700);
+				expect(DCnone.getLongestLength()).toEqual(null);
+			});	
 		});
 		
-		it('getLongestLength powinno zwrócić najdłuższy element lub null jeśli brak', function(){
-			expect(DC3.getLongestLength()).toEqual(1700);
-			expect(DCnone.getLongestLength()).toEqual(null);
+		describe('take', function(){
+			it('powinno zmniejszyć jeden element lub zwrócić null jeśli brak następnego', function(){
+				expect(DC0plus.take()).toEqual(1700);
+				expect(DC0plus.getCount()).toEqual(6);
+				expect(DC0plus.take()).toEqual(1700);
+				expect(DC0plus.getCount()).toEqual(5);
+				expect(DC0plus.take()).toEqual(1700);
+				expect(DC0plus.getCount()).toEqual(4);
+				expect(DC0plus.take()).toEqual(1700);
+				expect(DC0plus.getCount()).toEqual(3);
+				expect(DC0plus.take()).toEqual(1700);
+				expect(DC0plus.getCount()).toEqual(2);
+				expect(DC0plus.take()).toEqual(1700);
+				expect(DC0plus.getCount()).toEqual(1);
+				expect(DC0plus.take()).toEqual(1700);
+				expect(DC0plus.getCount()).toEqual(0);
+				expect(DC0plus.take()).toEqual(null);
+				expect(DC0plus.take()).toEqual(null);
+				expect(DC0plus.getCount()).toEqual(0);
+			});	
+			it('Calkowita ilosc elementow powinna malec razem z zabieraniem elementow', function(){
+				expect(DC0plus.getElementsCount()).toEqual(9);
+				expect(DC0plus.take()).toEqual(1700);
+				expect(DC0plus.getCount()).toEqual(6);
+				expect(DC0plus.take()).toEqual(1700);
+				expect(DC0plus.take()).toEqual(1700);
+				expect(DC0plus.take()).toEqual(1700);
+				expect(DC0plus.take()).toEqual(1700);
+				expect(DC0plus.take()).toEqual(1700);
+				expect(DC0plus.take()).toEqual(1700);
+				expect(DC0plus.getCount()).toEqual(0);
+				expect(DC0plus.getElementsCount()).toEqual(2);
+			});
+		});
+		
+		describe('toLongest', function(){
+			it('powinno nawigować do najdłuższego elementu jeżeli ma elementy', function(){
+				expect(DC0plus.getLength()).toEqual(1700);
+				expect(DC0plus.take()).toEqual(1700);
+				expect(DC0plus.take()).toEqual(1700);
+				expect(DC0plus.take()).toEqual(1700);
+				expect(DC0plus.take()).toEqual(1700);
+				expect(DC0plus.take()).toEqual(1700);
+				expect(DC0plus.take()).toEqual(1700);
+				expect(DC0plus.take()).toEqual(1700);
+				DC0plus.toLongest();
+				expect(DC0plus.take()).toEqual(250);
+				expect(DC0plus.take()).toEqual(250);
+				expect(DC0plus.getElementsCount()).toEqual(0);
+				expect(DC0plus.toLongest).toThrowError();
+			});
 		});
 	});
 });
