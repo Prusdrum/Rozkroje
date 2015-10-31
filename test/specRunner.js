@@ -11,12 +11,14 @@ requirejs.config({
 		"data-collection": "data-collection",
 		"joint-algorithm": "joint-algorithm",
 		"no-joint-algorithm": "no-joint-algorithm",
+		"result-data": "result-data",
 		"jasmine": ['../test/lib/jasmine-2.3.4/jasmine'],
 		"jasmine-html": ['../test/lib/jasmine-2.3.4/jasmine-html'],
 		"jasmine-boot": ['../test/lib/jasmine-2.3.4/boot'],
 		"validatorSpec": "../test/spec/ValidatorSpec",
 		"dataCollectionSpec": "../test/spec/DataCollectionSpec",
-		"algorithmSpec": "../test/spec/AlgorithmSpec"
+		"algorithmSpec": "../test/spec/AlgorithmSpec",
+		"resultDataSpec": "../test/spec/ResultDataSpec"
 	},
 	shim : {
 		'jasmine-html': {
@@ -30,7 +32,7 @@ requirejs.config({
 
 require(['jasmine-boot'], function(){
 	require(
-		['validatorSpec', 'dataCollectionSpec', 'algorithmSpec'], function(){
+		['validatorSpec', 'dataCollectionSpec', 'algorithmSpec', 'resultDataSpec'], function(){
 		window.onload(); //bez tego nic się nie dzieje
 	});
 });

@@ -1,19 +1,26 @@
 /**
  * @author Jerry
  */
-define(function(){
+define(function(resultData){
 	return function(data, refLen){
 		var resultData = [],
-			LENGTH_ERROR_MSG = "Jeden z elementów jest dłuższy niż długość lagi. Rozważ stykowanie.";
+			LENGTH_ERROR_MSG = "Jeden z elementów jest dłuższy niż długość lagi. Rozważ stykowanie.",
+			self = this;
 		
-		this.getResult = function(){
-			// if (data.getLongestElementLength() > refLen){
-				// throw new Error(LENGTH_ERROR_MSG);
-			// } else {
-				// //_prepareResultData();
-			// }
-			// return resultData;
-		};
+		
+		function getResult(){
+			if (!checkIfCanCalculate()) throw new Error(LENGTH_ERROR_MSG);
+			
+			_prepareResultData();
+			return resultData;
+		}
+		
+		function checkIfCanCalculate(){
+			if (data.getLongestLength() > refLen){
+				return false;
+			}
+			return true;
+		}
 		
 		function _prepareResultData () {
 	  		var longestElement, 
@@ -42,6 +49,7 @@ define(function(){
 			return (sum + elementToFit) <= refLen;
 		}
 		
-		
+		this.getResult = getResult;
+		this.checkIfCanCalculate = checkIfCanCalculate;
 	};
 });

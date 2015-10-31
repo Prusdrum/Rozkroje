@@ -39,7 +39,7 @@ define("data-collection", function(){
 				console.log(err);
 			}
 			finally {
-				console.log(newArray);
+				//console.log(newArray);
 			}
 			
 			return newArray;

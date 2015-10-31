@@ -10,6 +10,7 @@ requirejs.config({
 		"data-collection": "data-collection",
 		"joint-algorithm": "joint-algorithm",
 		"no-joint-algorithm": "no-joint-algorithm",
+		"result-data": "result-data"
 	}
 });
 
