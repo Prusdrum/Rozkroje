@@ -4,7 +4,7 @@
 define(
 ['data-collector', 'data-collection','joint-algorithm', 'no-joint-algorithm'],
 function(DataCollector, DataCollection, JointAlgo, NoJointAlgo){
-	return function(inputTable, DOM){
+	return function(inputTable, resultTable, DOM){
 		var rawData,
 			refLen,
 			isJointEnabled,
@@ -14,12 +14,31 @@ function(DataCollector, DataCollection, JointAlgo, NoJointAlgo){
 			resultData,
 			algorithm,
 			WARNING_HTML_TAG = 'p',
-			errors;
+			errors,
+			sheetConf = {
+				description: {
+					'Id':{
+						row: 0,
+						text: 'Identyfikator lagi'
+					},
+					'Sum': {
+						row: 1,
+						text: 'Suma długości elementów'
+					},
+					'Waste': {
+						row: 2,
+						text: 'Odpad'
+					},
+					'Count': {
+						row: 3,
+						text: 'Liczba elementów'
+					}
+				}
+			};
 		
 		this.Calculate = function(){
 			_instantiate();
 			_getData();
-			_updateResultTable();
 			_updateWarningConsole();
 		};
 		
@@ -46,13 +65,50 @@ function(DataCollector, DataCollection, JointAlgo, NoJointAlgo){
 				
 			try {
 				resultData = algorithm.getResult();
+				_updateResultTable();
 			} catch (err) {
 				errors.push(err);
 			}
+			
+			
 		}
 		
 		function _updateResultTable(){
+			var elements, col;
+			resultTable.clear();
+			_initDescriptionCells();
+			resultData.forEach(function(collection, index){
+				col = index + 1;
+				elements = collection.elements;
+				
+				_updateDescriptionCells(col, collection);
+				
+				elements.forEach(function(value, row){
+					row += 4;
+					resultTable.setDataAtCell(row, col, value);
+				});
+			});
+		}
+		
+		function _updateDescriptionCells(col, collection){
+			var count = collection.elements.length,
+				sum = collection.sum,
+				id = collection.index,
+				waste = refLen - sum;
 			
+			resultTable.setDataAtCell(sheetConf.description['Count'].row, col, count);
+			resultTable.setDataAtCell(sheetConf.description['Sum'].row, col, sum);
+			resultTable.setDataAtCell(sheetConf.description['Waste'].row, col, waste);
+			resultTable.setDataAtCell(sheetConf.description['Id'].row, col, id);
+		}
+		
+		function _initDescriptionCells(){
+			var firstCol = 0,
+				conf = sheetConf.description;
+			
+			for (var element in conf){
+				resultTable.setDataAtCell(conf[element].row, firstCol, conf[element].text);
+			}
 		}
 		
 		function _updateWarningConsole(){

@@ -7,7 +7,7 @@ define(function(){
 		ResultData = function(){
 			this.index = index;
 			this.elements = [];
-			
+			this.sum = 0;
 			index += 1; //static
 		};
 	
@@ -17,7 +17,8 @@ define(function(){
 			this.elements.push(numEl);
 			this.elements.sort(function(a, b){
 				return b - a;
-			});	
+			});
+			this.sum += numEl;
 		} else {
 			throw new Error(NO_NUMBER_ERROR_MSG);
 		}

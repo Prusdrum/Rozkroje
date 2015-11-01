@@ -5,13 +5,14 @@ define(['calc'], function(Calc) {
 	return function() {
 		var DOM = {},
 			inputTableDOM = document.getElementById('inputData'),
+			resultTableDOM = document.getElementById('resultData'),
 			inputTable,
+			resultTable,
 		    isInit = false,
 		    $calcBtn = $('#calculateBtn'),
 		    $resetBtn = $('#resetBtn');
 		
 		DOM.referenceLength = document.getElementById('referenceLength');
-		DOM.resultTable = document.getElementById('resultData');
 		DOM.jointLength = document.getElementById('jointLength');
 		DOM.isJointEnabled = document.getElementById('isJointEnabled');
 		DOM.warningPanel = document.getElementById('warningPanel');
@@ -23,6 +24,7 @@ define(['calc'], function(Calc) {
 		function initialization() {
 			if (!isInit){
 				initInputDataContainer();
+				initResultDataContainer();
 				initEvents();
 				isInit = true;
 			}
@@ -34,13 +36,25 @@ define(['calc'], function(Calc) {
 
 			inputTable = new Handsontable(inputTableDOM, {
 				minSpareRows : 1,
-				startRows: 10,
+				startRows: 25,
 				minCols : colsCount,
 				startCols : colsCount,
 				maxCols : colsCount,
 				rowHeaders : true,
 				colHeaders : inputHeaders,
 				contextMenu : false
+			});
+		}
+		
+		function initResultDataContainer(){
+			resultTable = new Handsontable(resultTableDOM, {
+				startRows: 100,
+				startCols : 100,
+				rowHeaders : true,
+				colHeaders: true,
+				contextMenu : false,
+				fixedColumnsLeft: 1,
+				fixedRowsTop: 4
 			});
 		}
 
@@ -58,7 +72,7 @@ define(['calc'], function(Calc) {
 		}
 
 		function calculate() {
-			var calc = new Calc(inputTable, DOM);
+			var calc = new Calc(inputTable, resultTable, DOM);
 			
 			calc.Calculate();
 		}
