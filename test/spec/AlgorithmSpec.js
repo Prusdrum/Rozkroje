@@ -2,8 +2,8 @@
  * @author Jerry
  */
 define(
-['data-collection', 'joint-algorithm', 'no-joint-algorithm'], 
-function(DataCollection, JointAlgo, NoJointAlgo){
+['data-collection', 'joint-algorithm', 'no-joint-algorithm', 'result-data'], 
+function(DataCollection, JointAlgo, NoJointAlgo, ResultData){
 	describe('No Joint Algorithm', function(){
 		var CONST = {
 				refLen: 12000
@@ -37,5 +37,37 @@ function(DataCollection, JointAlgo, NoJointAlgo){
 			});
 		});
 		
+		describe('willFit', function(){
+			var result;
+			
+			beforeEach(function(){
+				result = new ResultData();
+			});
+			
+			it('Powinien zwrócić true jeżeli wejdzie jeszcze jeden element', function(){
+				var algo = new NoJointAlgo(DC_ShortElements, CONST.refLen);
+				
+				result.add(1000);
+				expect(algo.willFit(result, 1000)).toBe(true);
+			});
+			
+			it('Powinien zwrócić false jeżeli nie wejdzie jeszcze jeden element', function(){
+				var algo = new NoJointAlgo(DC_ShortElements, CONST.refLen);
+				
+				result.add(11500);
+				expect(algo.willFit(result, 1000)).toBe(false);
+			});
+		});
+		
+		describe('getResult', function(){
+			it('Powinno podzielic', function(){
+				var algo = new NoJointAlgo(DC_ShortElements, CONST.refLen);
+				var result = algo.getResult();
+				
+				expect(result[0].elements).toEqual([1700, 1700, 1700, 1700, 1700, 1700, 1700]);
+				expect(result[1].elements).toEqual([450, 450, 450, 450, 250, 250]);
+				expect(result.length).toEqual(2);
+			});
+		});
 	});
 });
