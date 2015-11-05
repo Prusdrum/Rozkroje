@@ -51,7 +51,6 @@ define(['result-data'], function(ResultData){
 			}
 			resultCollection.push(part.getCopy());
 			resultData = resultCollection;
-			console.log(resultCollection);
 		}
 		
 		function willFit(referenceElement, elementToFit){

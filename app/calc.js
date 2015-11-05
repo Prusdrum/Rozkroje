@@ -15,26 +15,7 @@ function(DataCollector, DataCollection, JointAlgo, NoJointAlgo){
 			algorithm,
 			WARNING_HTML_TAG = 'p',
 			errors,
-			sheetConf = {
-				description: {
-					'Id':{
-						row: 0,
-						text: 'Identyfikator lagi'
-					},
-					'Sum': {
-						row: 1,
-						text: 'Suma długości elementów'
-					},
-					'Waste': {
-						row: 2,
-						text: 'Odpad'
-					},
-					'Count': {
-						row: 3,
-						text: 'Liczba elementów'
-					}
-				}
-			};
+			sheetConf = resultTable.sheetConf;
 		
 		this.Calculate = function(){
 			_instantiate();
@@ -64,13 +45,13 @@ function(DataCollector, DataCollection, JointAlgo, NoJointAlgo){
 				(new NoJointAlgo(dataObject, refLen)));
 				
 			try {
-				resultData = algorithm.getResult();
-				_updateResultTable();
+				setTimeout(function(){
+					resultData = algorithm.getResult();
+					_updateResultTable();
+				}, 0);
 			} catch (err) {
 				errors.push(err);
 			}
-			
-			
 		}
 		
 		function _updateResultTable(){
@@ -96,12 +77,15 @@ function(DataCollector, DataCollection, JointAlgo, NoJointAlgo){
 				id = collection.index,
 				waste = refLen - sum;
 			
+			console.log(resultTable);
 			resultTable.setDataAtCell(sheetConf.description['Count'].row, col, count);
 			resultTable.setDataAtCell(sheetConf.description['Sum'].row, col, sum);
 			resultTable.setDataAtCell(sheetConf.description['Waste'].row, col, waste);
 			resultTable.setDataAtCell(sheetConf.description['Id'].row, col, id);
+			
 		}
 		
+
 		function _initDescriptionCells(){
 			var firstCol = 0,
 				conf = sheetConf.description;
