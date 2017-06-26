@@ -39,7 +39,7 @@ describe('given find pattern', () => {
 
             data = [
                 { length: 1250, count: 4 },
-                { length: 3500, count: 5 },
+                { length: 3500, count: 7 },
                 { length: 2700, count: 5 },
                 { length: 2000, count: 5 }
             ];
@@ -51,10 +51,82 @@ describe('given find pattern', () => {
             expect(result.pattern).to.deep.equal([3500, 3500, 3500, 1250]);
         });
 
-        it('return pattern count as minimum count of pattern elements', () => {
+        it('return pattern count as minimum count of pattern elements incuding repetition', () => {
             const result = divisionCalc.findPattern(data, referenceLength);
 
-            expect(result.count).to.equal(4);
+            expect(result.count).to.equal(2);
+        });
+    });
+
+    describe('when data allows to have 1 pattern instance only', () => {
+        let data;
+        let referenceLength;
+
+        beforeEach(() => {
+            referenceLength = 12000;
+
+            data = [
+                { length: 1250, count: 4 },
+                { length: 3500, count: 5 },
+                { length: 2700, count: 5 },
+                { length: 2000, count: 5 }
+            ];
+        });
+
+        it('return correct pattern', () => {
+            const result = divisionCalc.findPattern(data, referenceLength);
+
+            expect(result.pattern).to.deep.equal([3500, 3500, 3500, 1250]);
+        });
+
+        it('return pattern count as minimum count of pattern elements incuding repetition', () => {
+            const result = divisionCalc.findPattern(data, referenceLength);
+
+            expect(result.count).to.equal(1);
         });
     });
 });
+
+// describe('given reduce by pattern', () => {
+//     describe('when count after reducing is equal to 0', () => {
+//         let data;
+//         let pattern;
+
+//         beforeEach(() => {
+//             pattern = {
+//                 pattern: [3500, 3500, 1250]
+//             }
+
+//             data = [
+//                 { length: 1250, count: 4 },
+//                 { length: 3500, count: 5 },
+//                 { length: 2700, count: 5 },
+//                 { length: 2000, count: 5 }
+//             ];
+//         });
+        
+//         it('it should remove elements', () => {
+//             const result = divisionCalc.reduceByPattern(data, pattern);
+//         });
+//     });
+
+//     describe('when count after reducing is greater than 0', () => {
+//         let data;
+//         let pattern;
+
+//         beforeEach(() => {
+//             data = [
+//                 { length: 1250, count: 4 },
+//                 { length: 3500, count: 5 },
+//                 { length: 2700, count: 5 },
+//                 { length: 2000, count: 5 }
+//             ];
+//         });
+
+//         it('reduce count of elements', () => {
+
+//         });
+//     });
+
+    
+// })

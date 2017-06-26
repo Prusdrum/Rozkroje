@@ -28,16 +28,21 @@ const findPattern = (data, referenceLength) => {
         }
     });
 
-    const minCount = _.chain(pattern)
-        .uniq()
-        .map((patternElement) => {
-            return _.find(data, (dataElement) => {
-                return dataElement.length === patternElement
-            });
-        })
-        .map('count')
-        .min()
-        .value();
+    const countedBy = _.countBy(pattern);
+    const minCount = _.chain(_.keys(countedBy).map(elementLength => {
+        const matchingElement = _.find(data, (dataElement) => {
+            return dataElement.length.toString() === elementLength;
+        });
+
+        const usedNTimes = countedBy[elementLength];
+        const possibleCountToUse = Math.floor(matchingElement.count / usedNTimes);
+        const count = _.min([matchingElement.count, possibleCountToUse]);
+
+        return count;
+    }))
+    .min()
+    .value();
+
 
     return {
         pattern,
