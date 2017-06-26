@@ -45,10 +45,26 @@ const findPattern = (data, referenceLength) => {
 
 
     return {
-        pattern,
+        elements: pattern,
         count: minCount
     }
 }
 
+const reduceByPattern = (data, pattern) => {
+    const {elements, count} = pattern;
+    const counted = _.countBy(elements);
 
-module.exports = { getDivision, findPattern };
+    return _.map(data, (dataElement) => {
+        const elementsInPattern = counted[dataElement.length];
+
+        const toReduce = elementsInPattern ? elementsInPattern * count : 0;
+
+        return {
+            count: dataElement.count - toReduce,
+            length: dataElement.length
+        }
+    });
+}
+
+
+module.exports = { getDivision, findPattern, reduceByPattern };
