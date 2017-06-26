@@ -7,7 +7,7 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/division', (req, res, next) => {
-  res.render('division');
+  res.render('division', { title: 'Rozkrój' });
 });
 
 module.exports = router;

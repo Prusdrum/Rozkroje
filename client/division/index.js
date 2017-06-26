@@ -1,13 +1,9 @@
 const a = 3;
-const axios = require('axios');
-
-const doRequest = () => {
-    axios.get('/webapi/division').then(function(response){
-        console.log(response);
-    });
-}
+const division = require('./api/division');
 
 document.querySelector('#sendBtn').addEventListener('click', () => {
-    doRequest();
+    division.getDivision().then((division) => {
+        console.log(division);
+    })
 })
 
