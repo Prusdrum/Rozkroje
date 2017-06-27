@@ -136,7 +136,7 @@ describe('given reduce by pattern', () => {
         
         it('it should remove elements', () => {
             const result = divisionCalc.reduceByPattern(data, pattern);
-            
+
             expect(result).to.deep.equal([
                 { length: 1250, count: 3 },
                 { length: 3500, count: 3 },
@@ -183,6 +183,37 @@ describe('given has any elements', () => {
             const result = divisionCalc.hasAnyElements(data);
 
             expect(result).to.not.be.true;
+        });
+    });
+});
+
+describe('given get division', () => {
+    describe('when has elements that gives only one instance of pattern', () => {
+        let data;
+        let referenceLength;
+
+        beforeEach(() => {
+            referenceLength = 12000;
+
+            data = [
+                { length: 1250, count: 4 },
+                { length: 3500, count: 5 },
+                { length: 2700, count: 5 },
+                { length: 2000, count: 5 }
+            ];
+        });
+
+        it('should calculate division', () => {
+            const result = divisionCalc.getDivision(data, referenceLength);
+
+            const expcted = [
+                { elements: [3500, 3500, 3500, 1250], count: 1 },
+                { elements: [3500, 3500, 2700, 2000], count: 1 },
+                { elements: [2700, 2700, 2700, 2700], count: 1 },
+                { elements: [2000, 2000, 2000, 2000, 1250, 1250, 1250], count: 1 }
+            ];
+
+            expect(result).to.deep.equal(expcted);
         });
     });
 });

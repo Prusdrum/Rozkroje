@@ -1,7 +1,18 @@
 const _ = require('lodash');
 
-const getDivision = () => {
+const getDivision = (data, referenceLength) => {
+    const result = [];
+    let dataToCalculate = [...data];
 
+    while (hasAnyElements(dataToCalculate)) {
+        const pattern = findPattern(dataToCalculate, referenceLength);
+
+        result.push(pattern);
+
+        dataToCalculate = reduceByPattern(dataToCalculate, pattern);
+    }
+
+    return result;
 }
 
 const findPattern = (data, referenceLength) => {
@@ -69,6 +80,7 @@ const reduceByPattern = (data, pattern) => {
 const hasAnyElements = (data) => {
     return _.some(data, element => element.count > 0);
 }
+
 
 
 module.exports = { 
