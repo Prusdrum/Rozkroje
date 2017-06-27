@@ -66,5 +66,14 @@ const reduceByPattern = (data, pattern) => {
     });
 }
 
+const hasAnyElements = (data) => {
+    return _.some(data, element => element.count > 0);
+}
 
-module.exports = { getDivision, findPattern, reduceByPattern };
+
+module.exports = { 
+    getDivision, 
+    findPattern, 
+    reduceByPattern,
+    hasAnyElements
+};

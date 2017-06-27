@@ -85,6 +85,34 @@ describe('given find pattern', () => {
             expect(result.count).to.equal(1);
         });
     });
+
+    describe('when there is too few elements to fit pattern', () => {
+let data;
+        let referenceLength;
+
+        beforeEach(() => {
+            referenceLength = 12000;
+
+            data = [
+                { length: 1250, count: 4 },
+                { length: 3500, count: 1 },
+                { length: 2700, count: 5 },
+                { length: 2000, count: 5 }
+            ];
+        });
+
+        it('return correct pattern', () => {
+            const result = divisionCalc.findPattern(data, referenceLength);
+
+            expect(result.elements).to.deep.equal([3500, 2700, 2700, 2700]);
+        });
+
+        it('return pattern count as minimum count of pattern elements incuding repetition', () => {
+            const result = divisionCalc.findPattern(data, referenceLength);
+
+            expect(result.count).to.equal(1);
+        });
+    });
 });
 
 describe('given reduce by pattern', () => {
@@ -108,7 +136,7 @@ describe('given reduce by pattern', () => {
         
         it('it should remove elements', () => {
             const result = divisionCalc.reduceByPattern(data, pattern);
-            console.log(result);
+            
             expect(result).to.deep.equal([
                 { length: 1250, count: 3 },
                 { length: 3500, count: 3 },
@@ -117,4 +145,44 @@ describe('given reduce by pattern', () => {
             ])
         });
     });    
-})
+});
+
+describe('given has any elements', () => {
+    describe('when there is at least one element', () => {
+        let data;
+
+        beforeEach(() => {
+            data = [
+                { length: 1250, count: 4 },
+                { length: 3500, count: 5 },
+                { length: 2700, count: 5 },
+                { length: 2000, count: 5 }
+            ];
+        });
+        
+        it('should return true', () => {
+            const result = divisionCalc.hasAnyElements(data);
+
+            expect(result).to.be.true;
+        });
+    });
+
+    describe('when every element has count equals 0', () => {
+        let data;
+
+        beforeEach(() => {
+            data = [
+                { length: 1250, count: 0 },
+                { length: 3500, count: 0 },
+                { length: 2700, count: 0 },
+                { length: 2000, count: 0 }
+            ];
+        });
+        
+        it('should return false', () => {
+            const result = divisionCalc.hasAnyElements(data);
+
+            expect(result).to.not.be.true;
+        });
+    });
+});
