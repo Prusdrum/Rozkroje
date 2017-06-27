@@ -1,5 +1,6 @@
 const expect = require('chai').expect; 
 const divisionCalc = require('../../service/division');
+const {ElementLongerThanReferenceError} = require('../../service/errors');
 
 describe('given find pattern', () => {
     describe('when data has one big element and other small', () => {
@@ -87,7 +88,7 @@ describe('given find pattern', () => {
     });
 
     describe('when there is too few elements to fit pattern', () => {
-let data;
+        let data;
         let referenceLength;
 
         beforeEach(() => {
@@ -214,6 +215,28 @@ describe('given get division', () => {
             ];
 
             expect(result).to.deep.equal(expcted);
+        });
+    });
+
+    describe('when one of the elements is longer than reference', () => {
+        let data;
+        let referenceLength;
+
+        beforeEach(() => {
+            referenceLength = 12000;
+
+            data = [
+                { length: 12001, count: 4 },
+                { length: 3500, count: 5 },
+                { length: 2700, count: 5 },
+                { length: 2000, count: 5 }
+            ];
+        });
+
+        it('should throw ElementLongerThanReferenceError', () => {
+            expect(() => {
+                divisionCalc.getDivision(data, referenceLength);
+            }).to.throw(ElementLongerThanReferenceError);
         });
     });
 });

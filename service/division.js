@@ -1,6 +1,11 @@
 const _ = require('lodash');
+const {ElementLongerThanReferenceError} = require('./errors');
 
 const getDivision = (data, referenceLength) => {
+    if (!elementsAreShorterThanReference(data, referenceLength)) {
+        throw new ElementLongerThanReferenceError();
+    }
+
     const result = [];
     let dataToCalculate = [...data];
 
@@ -13,6 +18,10 @@ const getDivision = (data, referenceLength) => {
     }
 
     return result;
+}
+
+const elementsAreShorterThanReference = (data, referenceLength) => {
+    return _.every(data, element => element.length <= referenceLength);
 }
 
 const findPattern = (data, referenceLength) => {
