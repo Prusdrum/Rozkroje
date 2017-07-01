@@ -188,7 +188,7 @@ describe('given has any elements', () => {
     });
 });
 
-describe('given get division', () => {
+describe('given calculate division', () => {
     describe('when has elements that gives only one instance of pattern', () => {
         let data;
         let referenceLength;
@@ -205,7 +205,7 @@ describe('given get division', () => {
         });
 
         it('should calculate division', () => {
-            const result = divisionCalc.getDivision(data, referenceLength);
+            const result = divisionCalc.calculateDivision(data, referenceLength);
 
             const expcted = [
                 { elements: [3500, 3500, 3500, 1250], count: 1 },
@@ -239,4 +239,26 @@ describe('given get division', () => {
             }).to.throw(ElementLongerThanReferenceError);
         });
     });
+});
+
+describe('given add waste', () => {
+    describe('when called with elements and ref length', () => {
+        let pattern;
+        const referenceLength = 12000;
+
+        beforeEach(() => {
+            pattern = {
+                elements: [2500, 2500, 2500, 2500,1000],
+                count: 20
+            }
+        });
+
+        it('should return model with new property waste', () => {
+            expect(divisionCalc.addWaste(pattern, referenceLength)).to.deep.equal({
+                elements: pattern.elements,
+                count: pattern.count,
+                waste: 1000
+            });
+        });
+    })
 });

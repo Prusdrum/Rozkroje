@@ -2,6 +2,14 @@ const _ = require('lodash');
 const {ElementLongerThanReferenceError} = require('./errors');
 
 const getDivision = (data, referenceLength) => {
+    const division = calculateDivision(data, referenceLength);
+
+    return _.map(division, (pattern) => {
+        return addWaste(pattern, referenceLength);
+    });
+}
+
+const calculateDivision = (data, referenceLength) => {
     if (!elementsAreShorterThanReference(data, referenceLength)) {
         throw new ElementLongerThanReferenceError();
     }
@@ -18,6 +26,16 @@ const getDivision = (data, referenceLength) => {
     }
 
     return result;
+}
+
+const addWaste = (pattern, referenceLength) => {
+    const difference = referenceLength - _.sum(pattern.elements);
+
+    return {
+        elements: [...pattern.elements],
+        count: pattern.count,
+        waste: difference
+    };
 }
 
 const elementsAreShorterThanReference = (data, referenceLength) => {
@@ -94,7 +112,9 @@ const hasAnyElements = (data) => {
 
 module.exports = { 
     getDivision, 
+    calculateDivision,
     findPattern, 
     reduceByPattern,
-    hasAnyElements
+    hasAnyElements,
+    addWaste
 };
