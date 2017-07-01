@@ -19,6 +19,34 @@ module.exports = {
                        presets: ['env']
                    }
                }
+            },
+            {
+                test: require.resolve('moment'),
+                use: [{
+                    loader: 'expose-loader',
+                    options: 'moment'
+                }]
+            },
+            {
+                test: require.resolve('pikaday'),
+                use: [{
+                    loader: 'expose-loader',
+                    options: 'pikaday'
+                }]
+            },
+            {
+                test: require.resolve('zeroclipboard'),
+                use: [{
+                    loader: 'expose-loader',
+                    options: 'zeroclipboard'
+                }]
+            },
+            {
+                test: require.resolve('numbro'),
+                use: [{
+                    loader: 'expose-loader',
+                    options: 'numbro'
+                }]
             }
         ]
     }
