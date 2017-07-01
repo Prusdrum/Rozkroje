@@ -1,13 +1,56 @@
 extends layout
 
 block content
-    h1 Rozkrój
     div#app
-        div.input__section
-            div#inputTable
-            button#sendData(data-bind="click: sendData.bind($data)") Wyślij dane
-        div.output__section
-            div(data-bind="text: resultText")
-
+        div.container
+            div.jumbotron.text-center
+                h1 Rozkroje profili
+            div.row
+                div.col-md-12
+                    div.panel.panel-primary
+                        div.panel-heading(data-bind="click: toggleConfig.bind($data)")
+                            span.glyphicon.glyphicon-cog  Parametry programu
+                        div.panel-body(data-bind="visible: showConfiguration")
+                            div.form-inline
+                                div.form-group.col-md-5
+                                    label.control-label(for="referenceLength") Długość lagi: &nbsp;
+                                    div.input-group
+                                        input#referenceLength.form-control(type="number", min="0", step="100", value="12000")
+                                        span.input-group-addon mm
+            div.row
+                div.col-md-12
+                    div.panel.panel-primary
+                        div.panel-heading(data-bind="click: toggleInputSection.bind($data)")
+                            span.glyphicon.glyphicon-log-in  Dane wejściowe
+                        div.panel-body(data-bind="visible: showInputSection")
+                            div.row
+                                div.col-md-3
+                                    div#inputTable.hot.handsontable.htRowHeaders.htColumnHeaders
+                                div.col-md-3
+                                    button.btn.btn-success(type="button", data-bind="click: sendData.bind($data)") Wykonaj
+                                    button.btn.btn-danger(type="button") Resetuj
+                                div.col-md-3
+                                    div.loader(data-bind="if: showLoader") Loader
+            div.row
+                div.col-md-12
+                    div.panel.panel-primary
+                        div.panel-heading(data-bind="click: toggleResultSection.bind($data)")
+                            span.glyphicon.glyphicon-log-out  Wynik
+                        div.panel-body(data-bind="visible: showResultSection")
+                            table.table.table-striped
+                                thead
+                                    tr
+                                        th Index
+                                        th Wzór
+                                        th Ilość
+                                        th Odpad
+                                tbody(data-bind="foreach: { data: result, as: 'pattern'} ")
+                                    tr
+                                        td(data-bind="text: $index")
+                                        td(data-bind="text: pattern.elements.join(', ')")
+                                        td(data-bind="text: pattern.count")
+                                        td(data-bind="text: pattern.waste")
 block scripts
     script(src="/javascripts/division.js")
+
+

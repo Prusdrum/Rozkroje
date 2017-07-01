@@ -1,37 +1,42 @@
-const sampleDivision = {
-	elements: [
-        { length : 2000, count : 200 },
-        { length : 2500, count : 200 },
-        { length : 6500, count : 200 },
-        { length : 4500, count : 200 },
-        { length : 450, count : 500 }
-    ],
-    referenceLength: 12000
-}
+const referenceLength = 12000;
 
 class App {
-    constructor(ko, Handsontable, divisionAPI, tableTarget) {
-        var data = [
-            ["", "Ford", "Volvo", "Toyota", "Honda"],
-            ["2016", 10, 11, 12, 13],
-            ["2017", 20, 11, 14, 13],
-            ["2018", 30, 15, 12, 13]
-        ];
+    constructor(injector, tableTarget) {
+        this.ko = injector.ko();
+        this.divisionAPI = injector.divisionAPI();
+        this.tableService = injector.tableService();
 
-        var hot = new Handsontable(tableTarget, {
-            data: data,
-            rowHeaders: true,
-            colHeaders: true
-        });
+        const table = this.tableService.createInputTable(tableTarget); 
 
-        this.resultText = ko.observable("");
-        this.divisionAPI = divisionAPI;
+        this.result = this.ko.observableArray([]);
+        this.table = table;
+        this.showLoader = this.ko.observable(false);
+        this.showConfiguration = this.ko.observable(true);
+        this.showInputSection = this.ko.observable(true);
+        this.showResultSection = this.ko.observable(true);
     }
 
     sendData() {
-        this.divisionAPI.getDivision(sampleDivision.elements, sampleDivision.referenceLength).then((division) => {
-            this.resultText(JSON.stringify(division, null, 2))
+        const elements = this.tableService.getValues(this.table);    
+        this.showLoader(true);
+
+        this.divisionAPI.getDivision(elements, referenceLength).then((division) => {
+            this.result(division);
+            this.showLoader(false);
+            this.showResultSection(true);
         });
+    }
+
+    toggleConfig() {
+        this.showConfiguration(!this.showConfiguration())
+    }
+
+    toggleInputSection() {
+        this.showInputSection(!this.showInputSection())
+    }
+
+    toggleResultSection() {
+        this.showResultSection(!this.showResultSection())
     }
 }
 
