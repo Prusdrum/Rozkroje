@@ -2,8 +2,12 @@ extends layout
 
 block content
     h1 Rozkrój
-    button#sendBtn Wyślij
-    div#example
+    div#app
+        div.input__section
+            div#inputTable
+            button#sendData(data-bind="click: sendData.bind($data)") Wyślij dane
+        div.output__section
+            div(data-bind="text: resultText")
 
 block scripts
     script(src="/javascripts/division.js")
