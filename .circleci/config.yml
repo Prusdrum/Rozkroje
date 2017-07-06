@@ -14,13 +14,14 @@ jobs:
       - run: 
           name: Run Tests
           command: npm run test
+      - run: git push heroku master
 
 branches:
   only:
     - new-app
 
-deployment:
-  production:
-    branch: new-app
-    heroku:
-      appname: rozkroje
+# deployment:
+#   production:
+#     branch: new-app
+#     heroku:
+#       appname: rozkroje
