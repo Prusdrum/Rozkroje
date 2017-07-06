@@ -14,7 +14,7 @@ jobs:
       - run: 
           name: Run Tests
           command: npm run test
-      - run: git push heroku master
+      - run: git push heroku new-app
 
 branches:
   only:
