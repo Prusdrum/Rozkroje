@@ -6,10 +6,14 @@ jobs:
     steps:
       - checkout
       - run:
-          name: 'Information'
-          command: node -v | npm -v
-      - run: npm install
-      - run: npm run client:build
+          name: Install dependencies
+          command: npm install
+      - run:
+          name: Build client app
+          command: npm run client:build
+      - run: 
+          name: Run Tests
+          command: npm run test
 
 branches:
   only:
