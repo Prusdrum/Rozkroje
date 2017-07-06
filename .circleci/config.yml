@@ -2,10 +2,12 @@ jobs:
   build:
     docker:
       - image: circleci/node:7
-    working_directory: ~/.
+    working_directory: ~/
     steps:
-      - run: pwd
-      - run: ls -la
+      - checkout
+      - run:
+          name: update-npm
+          command: 'sudo npm install -g npm@latest'
       - run: npm install
       - run: npm run client:build
 
