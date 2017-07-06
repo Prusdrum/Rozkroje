@@ -18,3 +18,9 @@ jobs:
 branches:
   only:
     - new-app
+
+deployment:
+  production:
+    branch: new-app
+    heroku:
+      appname: rozkroje
