@@ -4,7 +4,7 @@ jobs:
       - image: circleci/node:7
     working_directory: ~/.
     steps:
-      - run: npm install
+      - run: ls && npm install
       - run: npm run client:build
 
 workflows:
@@ -12,3 +12,7 @@ workflows:
   build_app:
     jobs:
       - build
+
+branches:
+  only:
+    - new-app
