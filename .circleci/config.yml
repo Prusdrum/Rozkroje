@@ -1,8 +1,8 @@
 jobs:
   build:
+    working_directory: ~/rozkroje
     docker:
       - image: circleci/node:7
-    working_directory: ~/
     steps:
       - checkout
       - run:
@@ -10,12 +10,6 @@ jobs:
           command: 'sudo npm install -g npm@latest'
       - run: npm install
       - run: npm run client:build
-
-workflows:
-  version: 1
-  build_app:
-    jobs:
-      - build
 
 branches:
   only:
