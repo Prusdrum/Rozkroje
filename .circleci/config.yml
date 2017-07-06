@@ -6,8 +6,8 @@ jobs:
     steps:
       - checkout
       - run:
-          name: update-npm
-          command: 'sudo npm install -g npm@latest'
+          name: 'Information'
+          command: node -v | npm -v
       - run: npm install
       - run: npm run client:build
 
