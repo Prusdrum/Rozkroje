@@ -1,0 +1,19 @@
+{
+  "name": "Rozkroje",
+  "description": "",
+  "scripts": {
+    "postdeploy": "npm run client:build"
+  },
+  "env": {
+  },
+  "formation": {
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
