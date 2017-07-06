@@ -1,0 +1,11 @@
+jobs:
+  build:
+    working_directory: ~/
+    steps:
+      - run:
+        name: Install dependencies
+        command: npm install
+      - run:
+        name: Build client
+        command: npm run client:build
+
