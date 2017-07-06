@@ -1,6 +1,6 @@
 jobs:
   build:
-    working_directory: ~/
+    working_directory: ~/.
     steps:
       - run:
           name: Install dependencies
