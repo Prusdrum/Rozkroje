@@ -2,10 +2,12 @@ jobs:
   build:
     working_directory: ~/.
     steps:
-      - run:
-          name: Install dependencies
-          command: npm install
-      - run:
-          name: Build client
-          command: npm run client:build
+      - run: npm install
+      - run: npm run client:build
 
+
+workflows:
+  version: 1
+  build_app:
+    jobs:
+      - build
