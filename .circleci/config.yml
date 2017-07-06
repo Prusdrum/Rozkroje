@@ -1,10 +1,11 @@
 jobs:
   build:
+    docker:
+      - image: circleci/node:7
     working_directory: ~/.
     steps:
       - run: npm install
       - run: npm run client:build
-
 
 workflows:
   version: 1
