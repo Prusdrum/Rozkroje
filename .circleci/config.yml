@@ -14,14 +14,14 @@ jobs:
       - run: 
           name: Run Tests
           command: npm run test
-      - run: 
-          name: Deploy
-          command: |
-            git config user.email $GIT_EMAIL
-            git config user.name $GIT_NAME
-            git add .
-            git commit -m "heroku commit"
-            git push heroku master
+      # - run: 
+      #     name: Deploy
+      #     command: |
+      #       git config user.email $GIT_EMAIL
+      #       git config user.name $GIT_NAME
+      #       git add .
+      #       git commit -m "heroku commit"
+      #       git push heroku master
 
 branches:
   only:
@@ -32,3 +32,12 @@ branches:
 #     branch: new-app
 #     heroku:
 #       appname: rozkroje
+deployment:
+  production:
+    branch: new-app
+    commands:
+      - git config user.email ${GIT_EMAIL}
+      - git config user.name ${GIT_NAME}
+      - git add .
+      - git commit -m "heroku commit"
+      - git push -f git@heroku.com:rozkroje.git ${CIRCLE_BRANCH}:master
