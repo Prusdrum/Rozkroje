@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./build/start_app.js",
+    "start": "node ./bin/www",
     "client:build": "node ./node_modules/webpack/bin/webpack.js",
     "client:dev": "node ./node_modules/webpack/bin/webpack.js --watch",
     "test": "node ./node_modules/mocha/bin/mocha test/**/*.test.js",
