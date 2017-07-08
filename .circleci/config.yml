@@ -27,8 +27,14 @@ branches:
   only:
     - new-app
 
+# deployment:
+#   production:
+#     branch: new-app
+#     heroku:
+#       appname: rozkroje
+
 deployment:
   production:
     branch: new-app
-    heroku:
-      appname: rozkroje
+    commands:
+      - ./heroku_deploy.sh
