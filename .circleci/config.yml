@@ -16,7 +16,7 @@ jobs:
           command: npm run test
       - run:
           name: Deploy
-          command: ./heroku_deploy.sh
+          command: ./rozkroje/.circleci/heroku_deploy.sh
       # - run: 
       #     name: Deploy
       #     command: |
