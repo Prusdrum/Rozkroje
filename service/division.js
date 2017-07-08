@@ -1,5 +1,5 @@
 const _ = require('lodash');
-const {ElementLongerThanReferenceError} = require('./errors');
+const {ElementLongerThanReferenceError, InfiniteLoopBreakerError} = require('./errors');
 
 const getDivision = (data, referenceLength) => {
     const division = calculateDivision(data, referenceLength);
@@ -16,16 +16,29 @@ const calculateDivision = (data, referenceLength) => {
 
     const result = [];
     let dataToCalculate = [...data];
+    const breaker = calculateLoopBreaker(data, referenceLength);
+    let breakerCounter = 0;
 
     while (hasAnyElements(dataToCalculate)) {
+        if (breakerCounter > breaker) {
+            throw new InfiniteLoopBreakerError();
+        }
         const pattern = findPattern(dataToCalculate, referenceLength);
 
         result.push(pattern);
 
         dataToCalculate = reduceByPattern(dataToCalculate, pattern);
+        breakerCounter += 1;
     }
 
     return result;
+}
+
+const calculateLoopBreaker = (data, referenceLength) => {
+    return _.chain(data)
+        .map('count')
+        .sum()
+        .value();
 }
 
 const addWaste = (pattern, referenceLength) => {

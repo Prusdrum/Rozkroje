@@ -5,6 +5,13 @@ class ElementLongerThanReferenceError extends Error {
     }
 }
 
+class InfiniteLoopBreakerError extends Error {
+    constructor(message){
+        super(message);
+    }
+}
+
 module.exports = {
-    ElementLongerThanReferenceError
+    ElementLongerThanReferenceError,
+    InfiniteLoopBreakerError
 }
