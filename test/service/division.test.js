@@ -1,8 +1,29 @@
 const expect = require('chai').expect; 
 const divisionCalc = require('../../service/division');
-const {ElementLongerThanReferenceError} = require('../../service/errors');
+const {ElementLongerThanReferenceError, InfiniteLoopBreakerError} = require('../../service/errors');
 
 describe('given find pattern', () => {
+    describe('when there program got into inifinite loop', () => {
+        let data;
+        let referenceLength;
+
+        beforeEach(() => {
+            data = [
+                { length: 1250, count: 4 },
+                { length: 1250, count: 4 }
+            ];
+
+            referenceLength = 12000;
+        });
+
+        it('should throw infinite loop breaker loop', () => {
+
+            expect(() => {
+                divisionCalc.getDivision(data, referenceLength)
+            }).to.throw(InfiniteLoopBreakerError);
+        });
+    });
+
     describe('when data has one big element and other small', () => {
         let data;
         let referenceLength;
