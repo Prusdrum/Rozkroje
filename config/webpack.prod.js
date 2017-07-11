@@ -1,11 +1,12 @@
-var path = require('path');
+const path = require('path');
+const webpack = require('webpack'); //to access built-in plugins
 
 module.exports = {
     entry: {
 		division: './client/division/index.js'
 	},
     output: {
-        path: path.join(__dirname, "public", "javascripts"),
+        path: path.join(__dirname, "..", "public", "javascripts"),
         filename: "[name].js",
         chunkFilename: "[id].chunk.js"
     },
@@ -56,5 +57,8 @@ module.exports = {
                 }]
             }
         ]
-    }
+    },
+    plugins: [
+        new webpack.optimize.UglifyJsPlugin()
+    ]
 };
