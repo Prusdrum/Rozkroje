@@ -9,7 +9,6 @@ const rootTarget = document.querySelector('#app');
 const tableTarget = document.querySelector('#inputTable');
 
 const App = require('./App');
-alert('test');
 
 const injector = {
     ko: () => ko,
