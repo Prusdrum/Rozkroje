@@ -51,7 +51,7 @@ const calculationEvent = (eventName, data) => {
         };
 
         if (data) {
-            eventData['eventLabel'] = data;
+            eventData['eventLabel'] = JSON.stringify(data);
         }
 
         ga('send', eventData);
