@@ -27,3 +27,7 @@ a {
     from {transform:rotate(0deg);}
     to {transform:rotate(360deg);}
 }
+
+.space-below {
+  margin-bottom: 15px;
+}

@@ -6,6 +6,7 @@ require('../app.css');
 const ko = require('knockout');
 const _ = require('lodash');
 const tracker = require('./service/tracker');
+const copyService = require('./service/copyService');
 
 const rootTarget = document.querySelector('#app');
 const tableTarget = document.querySelector('#inputTable');
@@ -17,7 +18,8 @@ const injector = {
     Handsontable: () => Handsontable,
     divisionAPI: () => divisionAPI,
     tableService: () => { return new TableService(Handsontable, _); },
-    tracker: () => tracker
+    tracker: () => tracker,
+    copyService: () => copyService
 }
 
 ko.applyBindings(new App(injector, tableTarget), rootTarget)

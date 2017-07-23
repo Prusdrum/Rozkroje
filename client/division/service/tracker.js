@@ -36,15 +36,24 @@ export const resetClicked = () => {
     calculationEvent('resetClicked'); 
 }
 
+export const copyClicked = () => {
+    calculationEvent('copyClicked'); 
+}
+
 const calculationEvent = (eventName, data) => {
     if (process.env.NODE_ENV === 'development') {
         console.log(`tracker: ${eventName}`, data);
     } else if (process.env.NODE_ENV === 'production') {
-        ga('send', {
+        let eventData = {
             hitType: 'event',
             eventCategory: 'Calculation',
             eventAction: eventName,
-            eventLabel: data
-        });
+        };
+
+        if (data) {
+            eventData['eventLabel'] = data;
+        }
+
+        ga('send', eventData);
     }    
 }

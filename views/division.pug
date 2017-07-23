@@ -32,7 +32,7 @@ block content
                                         span.glyphicon.glyphicon-cog.spin
                                         // /ko
                                         // ko if: !showLoader()
-                                        span Wykonaj
+                                        span &nbsp;Wykonaj
                                         // /ko
                                     button.btn.btn-danger(type="button", data-bind="click: resetData.bind($data)") Resetuj
             div.row
@@ -41,17 +41,24 @@ block content
                         div.panel-heading(data-bind="click: toggleResultSection.bind($data)")
                             span.glyphicon.glyphicon-log-out  Wynik
                         div.panel-body(data-bind="visible: showResultSection")
-                            table.table.table-striped
-                                thead
-                                    tr
-                                        th Wzór
-                                        th Ilość
-                                        th Odpad
-                                tbody(data-bind="foreach: { data: result, as: 'pattern'} ")
-                                    tr
-                                        td(data-bind="text: pattern.elements.join(', ')")
-                                        td(data-bind="text: `x${pattern.count}`")
-                                        td(data-bind="text: `${pattern.waste} mm`")
+                            div.row.space-below
+                                div.col-md-12
+                                    buton.btn.btn-default(data-bind="click: copyResult.bind($data)") 
+                                        span.glyphicon.glyphicon-copy 
+                                        span Kopiuj
+                            div.row
+                                div.col-md-12
+                                    table.table.table-striped#resultTable
+                                        thead
+                                            tr
+                                                th Wzór
+                                                th Ilość
+                                                th Odpad
+                                        tbody(data-bind="foreach: { data: result, as: 'pattern'} ")
+                                            tr
+                                                td(data-bind="text: pattern.elements.join(', ')")
+                                                td(data-bind="text: `x${pattern.count}`")
+                                                td(data-bind="text: `${pattern.waste} mm`")
 block scripts
     script(src="/javascripts/division.js")
 

@@ -4,6 +4,7 @@ class App {
         this.divisionAPI = injector.divisionAPI();
         this.tableService = injector.tableService();
         this.tracker = injector.tracker();
+        this.copyService = injector.copyService();
 
         const table = this.tableService.createInputTable(tableTarget); 
 
@@ -19,6 +20,7 @@ class App {
         }, this);
 
         this.table = table;
+        this.stats = this.ko.observable(null);
         this.showLoader = this.ko.observable(false);
         this.showConfiguration = this.ko.observable(true);
         this.showInputSection = this.ko.observable(true);
@@ -40,7 +42,27 @@ class App {
             this.result(division);
             this.showLoader(false);
             this.showResultSection(true);
+            
+            this.stats(this.getStats());
         });
+    }
+
+    getStats() {
+        const wasteSumInMilimeters = _.chain(this.result())
+            .map('waste')
+            .sum()
+            .value();
+
+        const wasteSumInMeters = wasteSumInMilimeters / 1000;
+        const countSum = _.chain(this.result())
+            .map('count')
+            .sum()
+            .value();
+        
+        return {
+            wasteSumInMeters,
+            countSum
+        }
     }
 
     resetData() {
@@ -58,6 +80,30 @@ class App {
 
     toggleResultSection() {
         this.showResultSection(!this.showResultSection())
+    }
+
+    copyResult() {
+        this.tracker.copyClicked();
+        this.copyService.copy(this._convertResultToHtml());
+    }
+
+    _convertResultToHtml() {
+        const header = (
+            `Wzór\tIlość\tOdpad`
+        );
+
+        const body = this.result().map(result => {
+            const elements = result.elements.join(', ');
+            const count = result.count;
+            const waste = `${result.waste} mm`;
+            return `${elements}\t${count}\t${waste}`;
+        }).join('\n');
+
+        const template = (
+            `${header}\n${body}`
+        );
+
+        return template;
     }
 }
 
