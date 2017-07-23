@@ -4,7 +4,7 @@ block content
     div#app
         div.container
             div.jumbotron.text-center
-                h1 Rozkroje profili
+                h1 ROZKROJE PROFILI
             div.row
                 div.col-md-12
                     div.panel.panel-primary
@@ -15,7 +15,7 @@ block content
                                 div.form-group.col-md-5
                                     label.control-label(for="referenceLength") Długość lagi: &nbsp;
                                     div.input-group
-                                        input#referenceLength.form-control(type="number", min="0", step="100", value="12000")
+                                        input#referenceLength.form-control(type="number", min="0", step="100", data-bind="value: referenceLength")
                                         span.input-group-addon mm
             div.row
                 div.col-md-12
@@ -27,10 +27,14 @@ block content
                                 div.col-md-3
                                     div#inputTable.hot.handsontable.htRowHeaders.htColumnHeaders
                                 div.col-md-3
-                                    button.btn.btn-success(type="button", data-bind="click: sendData.bind($data)") Wykonaj
-                                    button.btn.btn-danger(type="button") Resetuj
-                                div.col-md-3
-                                    div.loader(data-bind="if: showLoader") Loader
+                                    button.btn.btn-success(type="button", data-bind="click: sendData.bind($data)") 
+                                        // ko if: showLoader()
+                                        span.glyphicon.glyphicon-cog.spin
+                                        // /ko
+                                        // ko if: !showLoader()
+                                        span Wykonaj
+                                        // /ko
+                                    button.btn.btn-danger(type="button", data-bind="click: resetData.bind($data)") Resetuj
             div.row
                 div.col-md-12
                     div.panel.panel-primary
@@ -40,16 +44,14 @@ block content
                             table.table.table-striped
                                 thead
                                     tr
-                                        th Index
                                         th Wzór
                                         th Ilość
                                         th Odpad
                                 tbody(data-bind="foreach: { data: result, as: 'pattern'} ")
                                     tr
-                                        td(data-bind="text: $index")
                                         td(data-bind="text: pattern.elements.join(', ')")
-                                        td(data-bind="text: pattern.count")
-                                        td(data-bind="text: pattern.waste")
+                                        td(data-bind="text: `x${pattern.count}`")
+                                        td(data-bind="text: `${pattern.waste} mm`")
 block scripts
     script(src="/javascripts/division.js")
 

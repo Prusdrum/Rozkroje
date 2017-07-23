@@ -2,8 +2,10 @@ const divisionAPI = require('./api/division');
 const TableService = require('./service/tableService');
 var Handsontable = require('handsontable');
 require('handsontable/dist/handsontable.full.css');
+require('../app.css'); 
 const ko = require('knockout');
 const _ = require('lodash');
+const tracker = require('./service/tracker');
 
 const rootTarget = document.querySelector('#app');
 const tableTarget = document.querySelector('#inputTable');
@@ -14,7 +16,8 @@ const injector = {
     ko: () => ko,
     Handsontable: () => Handsontable,
     divisionAPI: () => divisionAPI,
-    tableService: () => { return new TableService(Handsontable, _); }
+    tableService: () => { return new TableService(Handsontable, _); },
+    tracker: () => tracker
 }
 
 ko.applyBindings(new App(injector, tableTarget), rootTarget)

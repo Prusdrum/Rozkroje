@@ -5,7 +5,7 @@ class TableService {
     }
 
     createInputTable(target) {
-        const inputHeaders = ["Długość", "Ilość sztuk"];
+        const inputHeaders = ["Długość [mm]", "Ilość sztuk"];
         const colsCount = inputHeaders.length;
 
         const table = new this.Handsontable(target, {
@@ -41,6 +41,11 @@ class TableService {
         }
 
         return data;
+    }
+
+    clearTable(table) {
+        table.clear();
+        console.log(table);
     }
 }
 
