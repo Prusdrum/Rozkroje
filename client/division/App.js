@@ -58,7 +58,9 @@ class App {
 
     setStats() {
         const wasteSumInMilimeters = _.chain(this.result())
-            .map('waste')
+            .map((element) => {
+                return element.waste * element.count;
+            })
             .sum()
             .value();
 
