@@ -5,6 +5,8 @@ class App {
         this.tableService = injector.tableService();
         this.tracker = injector.tracker();
         this.copyService = injector.copyService();
+        this.notifyService = injector.notifyService();
+        this.text = injector.text();
 
         const table = this.tableService.createInputTable(tableTarget); 
 
@@ -15,8 +17,8 @@ class App {
                             .computed(this.referenceLength)
                             .extend({ throttle: 400 });
     
-        this.throttledReferenceLength.subscribe((val) => {
-            this.tracker.referenceLengthChanged(val);
+        this.throttledReferenceLength.subscribe((referenceLength) => {
+            this.tracker.referenceLengthChanged(referenceLength);
         }, this);
 
         this.table = table;
@@ -25,6 +27,11 @@ class App {
         this.showConfiguration = this.ko.observable(true);
         this.showInputSection = this.ko.observable(true);
         this.showResultSection = this.ko.observable(true);
+
+        this.stats = {
+            wasteSumInMeters: this.ko.observable(null),
+            countSum: this.ko.observable(null)
+        }
     }
 
     sendData() {
@@ -42,12 +49,13 @@ class App {
             this.result(division);
             this.showLoader(false);
             this.showResultSection(true);
+            this.notifyService.showInfo(this.text.calculationDone);
             
-            this.stats(this.getStats());
+            this.setStats();
         });
     }
 
-    getStats() {
+    setStats() {
         const wasteSumInMilimeters = _.chain(this.result())
             .map('waste')
             .sum()
@@ -59,15 +67,14 @@ class App {
             .sum()
             .value();
         
-        return {
-            wasteSumInMeters,
-            countSum
-        }
+       this.stats.wasteSumInMeters(wasteSumInMeters);
+       this.stats.countSum(countSum);
     }
 
     resetData() {
         this.tracker.resetClicked();
         this.tableService.clearTable(this.table);
+        this.notifyService.showWarning(this.text.dataTableCleared);
     }
 
     toggleConfig() {
@@ -85,6 +92,7 @@ class App {
     copyResult() {
         this.tracker.copyClicked();
         this.copyService.copy(this._convertResultToHtml());
+        this.notifyService.showInfo(this.text.copiedToClipboard);
     }
 
     _convertResultToHtml() {

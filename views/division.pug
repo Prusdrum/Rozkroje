@@ -41,6 +41,14 @@ block content
                         div.panel-heading(data-bind="click: toggleResultSection.bind($data)")
                             span.glyphicon.glyphicon-log-out  Wynik
                         div.panel-body(data-bind="visible: showResultSection")
+                            div#stats.row.space-below(data-bind="if: result().length > 0")
+                                div.col-md-12
+                                    p
+                                        span Suma odpadu w metrach:
+                                        strong(data-bind="text: stats.wasteSumInMeters() + 'm'")
+                                    p
+                                        span Ilość potrzebnych elementów (lag):
+                                        strong(data-bind="text: stats.countSum()")
                             div.row.space-below
                                 div.col-md-12
                                     buton.btn.btn-default(data-bind="click: copyResult.bind($data)") 

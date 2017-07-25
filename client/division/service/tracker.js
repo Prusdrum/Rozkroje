@@ -27,9 +27,7 @@ export const calculateClicked = (data, refLength) => {
 }
 
 export const referenceLengthChanged = (newLength) => {
-    calculationEvent('referenceLengthChanged', {
-        referenceLength: newLength
-    }); 
+    calculationEvent('referenceLengthChanged', newLength); 
 }
 
 export const resetClicked = () => {
@@ -42,7 +40,7 @@ export const copyClicked = () => {
 
 const calculationEvent = (eventName, data) => {
     if (process.env.NODE_ENV === 'development') {
-        console.log(`tracker: ${eventName}`, data);
+        console.log(`tracker: ${eventName}`, JSON.stringify(data));
     } else if (process.env.NODE_ENV === 'production') {
         let eventData = {
             hitType: 'event',
