@@ -67,6 +67,13 @@ block content
                                                 td(data-bind="text: pattern.elements.join(', ')")
                                                 td(data-bind="text: `x${pattern.count}`")
                                                 td(data-bind="text: `${pattern.waste} mm`")
+
+block footer
+    div.container
+        div.footer__version
+            span Wersja: 
+            span= version
+
 block scripts
     script(src="/javascripts/division.js")
 
