@@ -13,7 +13,7 @@ const _ = require('lodash');
 const tracker = require('./service/tracker');
 const copyService = require('./service/copyService');
 const notifyService = require('./service/notifyService');
-
+require('./utils/knockout.extenders')(ko);
 const rootTarget = document.querySelector('#app');
 const tableTarget = document.querySelector('#inputTable');
 

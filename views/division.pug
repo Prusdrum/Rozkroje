@@ -44,11 +44,15 @@ block content
                             div#stats.row.space-below(data-bind="if: result().length > 0")
                                 div.col-md-12
                                     p
-                                        span Suma odpadu w metrach:
+                                        span Suma odpadu w metrach: 
                                         strong(data-bind="text: stats.wasteSumInMeters() + 'm'")
                                     p
-                                        span Ilość potrzebnych elementów (lag):
-                                        strong(data-bind="text: stats.countSum()")
+                                        span Ilość potrzebnych lag: 
+                                        strong(data-bind="text: stats.countSum()") 
+                                        span(data-bind="text: ' (o długości ' + referenceLength() + 'mm)'")
+                                    p
+                                        span Suma materiału: 
+                                        strong(data-bind="text: stats.materialSumInMeters() + 'm'")
                             div.row.space-below
                                 div.col-md-12
                                     buton.btn.btn-default(data-bind="click: copyResult.bind($data)") 

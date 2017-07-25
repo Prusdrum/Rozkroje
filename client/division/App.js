@@ -11,7 +11,7 @@ class App {
         const table = this.tableService.createInputTable(tableTarget); 
 
         this.result = this.ko.observableArray([]);
-        this.referenceLength = this.ko.observable(12000);
+        this.referenceLength = this.ko.observable(12000).extend({ numeric: 0 });
 
         this.throttledReferenceLength = this.ko
                             .computed(this.referenceLength)
@@ -30,7 +30,8 @@ class App {
 
         this.stats = {
             wasteSumInMeters: this.ko.observable(null),
-            countSum: this.ko.observable(null)
+            countSum: this.ko.observable(null),
+            materialSumInMeters: this.ko.observable(null)
         }
     }
 
@@ -66,9 +67,14 @@ class App {
             .map('count')
             .sum()
             .value();
+
+        const referenceLength = new Number(this.referenceLength(), 10);
+
+        const materialSumInMeters = countSum * referenceLength / 1000;
         
-       this.stats.wasteSumInMeters(wasteSumInMeters);
-       this.stats.countSum(countSum);
+        this.stats.wasteSumInMeters(wasteSumInMeters);
+        this.stats.countSum(countSum);
+        this.stats.materialSumInMeters(materialSumInMeters);
     }
 
     resetData() {
