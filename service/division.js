@@ -38,7 +38,7 @@ const calculateLoopBreaker = (data, referenceLength) => {
     return _.chain(data)
         .map('count')
         .sum()
-        .value();
+        .value() * 1000;
 }
 
 const addWaste = (pattern, referenceLength) => {
