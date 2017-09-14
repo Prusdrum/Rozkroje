@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 router.get('/debug', (req, res, next) => {
-    const logPath = path.join(__dirname, '..', 'logs/debug.log');
+    const logPath = path.join('..', 'logs/debug.log');
     console.log(logPath);
 
     fs.readFile(logPath, 'utf8', (err, data) => {
@@ -18,7 +18,7 @@ router.get('/debug', (req, res, next) => {
 });
 
 router.get('/error', (req, res, next) => {
-    const logPath = path.join(__dirname, '..', 'logs/error.log');
+    const logPath = path.join('..', 'logs/error.log');
     console.log(logPath);
 
     fs.readFile(logPath, 'utf8', (err, data) => {
