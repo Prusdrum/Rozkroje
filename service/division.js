@@ -1,5 +1,5 @@
 const _ = require('lodash');
-const logger = require('../logs/logger');
+const logger = require('./logger');
 const {ElementLongerThanReferenceError, InfiniteLoopBreakerError} = require('./errors');
 
 const getDivision = (data, referenceLength) => {
