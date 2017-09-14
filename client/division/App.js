@@ -53,6 +53,9 @@ class App {
             this.notifyService.showInfo(this.text.calculationDone);
             
             this.setStats();
+        }).catch(err => {
+            this.showLoader(false);
+            this.notifyService.showError(this.text.calculationError);
         });
     }
 

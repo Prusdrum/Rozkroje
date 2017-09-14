@@ -1,4 +1,5 @@
 const _ = require('lodash');
+const logger = require('../logs/logger');
 const {ElementLongerThanReferenceError, InfiniteLoopBreakerError} = require('./errors');
 
 const getDivision = (data, referenceLength) => {
@@ -11,8 +12,11 @@ const getDivision = (data, referenceLength) => {
 
 const calculateDivision = (data, referenceLength) => {
     if (!elementsAreShorterThanReference(data, referenceLength)) {
+        logger.log('error', JSON.stringify(data));
         throw new ElementLongerThanReferenceError();
     }
+
+    logger.log('info', JSON.stringify(data));
 
     const result = [];
     let dataToCalculate = [...data];
@@ -21,6 +25,7 @@ const calculateDivision = (data, referenceLength) => {
 
     while (hasAnyElements(dataToCalculate)) {
         if (breakerCounter > breaker) {
+            logger.log('error', JSON.stringify(data));
             throw new InfiniteLoopBreakerError();
         }
         const pattern = findPattern(dataToCalculate, referenceLength);

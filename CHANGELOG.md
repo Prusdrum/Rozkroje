@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.3.3] - 2017-09-14
+
+* Added link to changelog
+* Added server file logging
+* Added error notification on client
+
 ## [0.3.2] - 2017-08-24
 
 * Workaround for 'circuit braker'

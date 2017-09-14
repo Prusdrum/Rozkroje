@@ -1,5 +1,6 @@
 {
     "calculationDone": "Wykonano rozkrój",
     "dataTableCleared": "Wyczyszczono tabelę danych",
-    "copiedToClipboard": "Skopiowano do schowka"
+    "copiedToClipboard": "Skopiowano do schowka",
+    "calculationError": "Wystąpił błąd"
 }

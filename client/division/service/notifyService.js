@@ -12,5 +12,12 @@ module.exports = {
             className: 'warning',
             autoHideDelay: 2000
         });
+    },
+    showError: (text) => {
+        $.notify(text, {
+            position: 'top center', 
+            className: 'error',
+            autoHideDelay: 2000
+        });
     }
 }
