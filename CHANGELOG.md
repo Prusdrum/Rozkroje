@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.3.4] - 2017-09-23
+
+* Added deploy script to circleCi
+
 ## [0.3.3] - 2017-09-14
 
 * Added link to changelog
