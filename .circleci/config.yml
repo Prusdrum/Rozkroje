@@ -35,6 +35,8 @@ branches:
 deployment:
   production:
     branch: new-app
+    heroku:
+      appname: rozkroje
     commands:
       - |
         cat >~/.netrc <<EOF
