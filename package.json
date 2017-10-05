@@ -3,12 +3,12 @@
   "version": "0.3.4",
   "private": true,
   "scripts": {
-    "dev": "node ./bin/www",
-    "start": "node ./bin/www && npm run client:build",
+    "start": "node ./bin/www",
     "client:build": "set NODE_ENV=production && node ./node_modules/webpack/bin/webpack.js --config config/webpack.prod.js",
     "client:dev": "set NODE_ENV=development && node ./node_modules/webpack/bin/webpack.js --watch --config config/webpack.dev.js",
     "test": "node ./node_modules/mocha/bin/mocha test/**/*.test.js",
-    "test:dev": "node ./node_modules/mocha/bin/mocha test/**/*.test.js --watch"
+    "test:dev": "node ./node_modules/mocha/bin/mocha test/**/*.test.js --watch",
+    "postinstall": "npm run client:build"
   },
   "dependencies": {
     "axios": "^0.16.2",
@@ -24,9 +24,7 @@
     "morgan": "~1.8.1",
     "pug": "~2.0.0-beta11",
     "serve-favicon": "~2.4.2",
-    "winston": "^2.3.1"
-  },
-  "devDependencies": {
+    "winston": "^2.3.1",
     "babel-core": "^6.25.0",
     "babel-loader": "^7.1.0",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
@@ -37,5 +35,8 @@
     "mocha": "^3.4.2",
     "style-loader": "^0.18.2",
     "webpack": "^3.0.0"
+  },
+  "devDependencies": {
+
   }
 }
