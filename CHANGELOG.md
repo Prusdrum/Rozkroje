@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.4.0] - 2017-10-05
+
+* Added postinstall script to package.json. Now it's possible to deploy using gitHub 🎉
+* Removed logs route. It won't work because of missing write access rights on Heroku
+* Removed file logging from Winston configuration
+
 ## [0.3.4] - 2017-09-23
 
 * Added deploy script to circleCi

@@ -14,45 +14,16 @@ jobs:
       - run: 
           name: Run Tests
           command: npm run test
-      # - run: 
-      #     name: Deploy
-      #     command: |
-      #       git config user.email $GIT_EMAIL
-      #       git config user.name $GIT_NAME
-      #       git add .
-      #       git commit -m "heroku commit"
-      #       git push heroku master
 
-branches:
-  only:
-    - new-app
+# branches:
+#   only:
+#     - master
 
 # deployment:
 #   production:
-#     branch: new-app
+#     branch: master
 #     heroku:
 #       appname: rozkroje
-deployment:
-  production:
-    branch: new-app
-    heroku:
-      appname: rozkroje
-    commands:
-      - |
-        cat >~/.netrc <<EOF
-        machine api.heroku.com
-          login $HEROKU_EMAIL
-          password $HEROKU_TOKEN
-        machine git.heroku.com
-          login $HEROKU_EMAIL
-          password $HEROKU_TOKEN
-        EOF
-      - chmod 600 ~/.netrc # Heroku cli complains about permissions without this
-      - "[[ ! -s \"$(git rev-parse --git-dir)/shallow\" ]] || git fetch --unshallow"
-      - git push git@heroku.com:rozkroje.git $CIRCLE_SHA1:refs/heads/master
-# deployment:
-#   production:
-#     branch: new-app
 #     commands:
 #       - |
 #         cat >~/.netrc <<EOF
