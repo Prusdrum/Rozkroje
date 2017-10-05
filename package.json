@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "node ./bin/www",
-    "start": "node ./bin/www && client:build",
+    "start": "node ./bin/www && npm run client:build",
     "client:build": "set NODE_ENV=production && node ./node_modules/webpack/bin/webpack.js --config config/webpack.prod.js",
     "client:dev": "set NODE_ENV=development && node ./node_modules/webpack/bin/webpack.js --watch --config config/webpack.dev.js",
     "test": "node ./node_modules/mocha/bin/mocha test/**/*.test.js",
