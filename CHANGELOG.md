@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.5.0] - 2017-10-06
+
+* Refactored backend code
+* Added translations
+
 ## [0.4.0] - 2017-10-05
 
 * Added postinstall script to package.json. Now it's possible to deploy using gitHub 🎉

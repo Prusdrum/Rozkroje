@@ -1,0 +1,27 @@
+{
+    "siteTitle": "Rozkroje",
+    "version": "Wersja",
+	"division": {
+		"header": "Rozkroje profili",
+        "configuration": "Parametry programu",
+        "calculate": "Wykonaj",
+        "reset": "Resetuj",
+        "inputData": "Dane wejściowe",
+        "result": "Wynik",
+        "copy": "Kopiuj",
+        "pattern": "Wzór",
+        "amount": "Ilość",
+        "waste": "Odpad",
+        "referenceElementLength": "Długość lagi",
+        "wasteSumInMeters": "Suma odpadu w metrach",
+        "materialSumInMeters": "Suma materiału",
+        "referenceElementsNeeded": "Ilość potrzebnych lag",
+        "calculationDone": "Wykonano rozkrój",
+        "dataTableCleared": "Wyczyszczono tabelę danych",
+        "copiedToClipboard": "Skopiowano do schowka",
+        "calculationError": "Wystąpił błąd",
+        "length": "Długość",
+        "count": "Ilość sztuk",
+        "ofLength": "O długości {{length}} mm"
+	}
+}

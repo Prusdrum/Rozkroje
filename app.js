@@ -1,15 +1,11 @@
 const express = require('express');
-const configureApp = require('./express');
-
-const index = require('./routes/index');
-const division = require('./routes/webapi/division');
+const configureExpressApp = require('./configureExpressApp');
+const configureRoutes = require('./configureRoutes');
+const appConfig = require('./config/appConfig');
 
 const app = express();
-configureApp(app);
-
-//set routes
-app.use('/', index);
-app.use('/webapi/division', division);
+configureExpressApp(app);
+configureRoutes(app, appConfig);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

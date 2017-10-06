@@ -35,3 +35,7 @@ a {
 .space-below {
   margin-bottom: 15px;
 }
+
+.language-link {
+    margin-right: 10px;
+}

@@ -4,6 +4,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
+const i18n = require('i18n');
 
 const configureExpressApp = (app) => {
     // view engine setup
@@ -17,6 +18,14 @@ const configureExpressApp = (app) => {
     app.use(bodyParser.urlencoded({ extended: false }));
     app.use(cookieParser());
     app.use(express.static(path.join(__dirname, 'public')));
+
+    i18n.configure({
+        locales: ['en', 'pl'],
+        directory: path.join(__dirname, 'locales'),
+        defaultLocale: 'pl',
+        objectNotation: true
+    });
+    app.use(i18n.init);
 }
 
 module.exports = configureExpressApp;
