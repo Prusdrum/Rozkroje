@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.5.1] - 2017-10-06
+
+* Fixed href on language links
+
 ## [0.5.0] - 2017-10-06
 
 * Refactored backend code
