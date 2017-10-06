@@ -50,12 +50,12 @@ class App {
             this.result(division);
             this.showLoader(false);
             this.showResultSection(true);
-            this.notifyService.showInfo(this.text.calculationDone);
+            this.notifyService.showInfo(this.text.division.calculationDone);
             
             this.setStats();
         }).catch(err => {
             this.showLoader(false);
-            this.notifyService.showError(this.text.calculationError);
+            this.notifyService.showError(this.text.division.calculationError);
         });
     }
 
@@ -85,7 +85,7 @@ class App {
     resetData() {
         this.tracker.resetClicked();
         this.tableService.clearTable(this.table);
-        this.notifyService.showWarning(this.text.dataTableCleared);
+        this.notifyService.showWarning(this.text.division.dataTableCleared);
     }
 
     toggleConfig() {
@@ -103,12 +103,13 @@ class App {
     copyResult() {
         this.tracker.copyClicked();
         this.copyService.copy(this._convertResultToHtml());
-        this.notifyService.showInfo(this.text.copiedToClipboard);
+        this.notifyService.showInfo(this.text.division.copiedToClipboard);
     }
 
     _convertResultToHtml() {
+        const divisionText = this.text.division;
         const header = (
-            `Wzór\tIlość\tOdpad`
+            `${divisionText.pattern}\t${divisionText.amount}\t${divisionText.waste}`
         );
 
         const body = this.result().map(result => {

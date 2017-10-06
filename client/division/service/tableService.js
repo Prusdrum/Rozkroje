@@ -1,11 +1,12 @@
 class TableService {
-    constructor(Handsontable, _) {
+    constructor(Handsontable, _, text) {
         this.Handsontable = Handsontable;
         this._ = _;
+        this.text = text();
     }
 
     createInputTable(target) {
-        const inputHeaders = ["Długość [mm]", "Ilość sztuk"];
+        const inputHeaders = [`${this.text.division.length} [mm]`, `${this.text.division.count}`];
         const colsCount = inputHeaders.length;
 
         const table = new this.Handsontable(target, {

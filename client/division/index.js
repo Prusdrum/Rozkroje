@@ -2,7 +2,6 @@ const divisionAPI = require('./api/division');
 const TableService = require('./service/tableService');
 var Handsontable = require('handsontable');
 const jquery = require('jquery');
-const locale = require('./locale/pl.json');
 //add jquery to globalspace to make notifyjs working
 window.$ = jquery;
 require('../lib/notify.min');
@@ -19,15 +18,18 @@ const tableTarget = document.querySelector('#inputTable');
 
 const App = require('./App');
 
+const locale = window.settings.locale;
+
 const injector = {
     ko: () => ko,
+    text: () => require(`../../locales/${locale}.json`),
     Handsontable: () => Handsontable,
     divisionAPI: () => divisionAPI,
-    tableService: () => { return new TableService(Handsontable, _); },
+    tableService: () => { return new TableService(Handsontable, _, injector.text); },
     tracker: () => tracker,
     copyService: () => copyService,
     notifyService: () => notifyService,
-    text: () => locale
+    
 }
 
 ko.applyBindings(new App(injector, tableTarget), rootTarget)

@@ -2,17 +2,26 @@ var express = require('express');
 var router = express.Router();
 const meta = require('../package.json');
 
-/* GET home page. */
-router.get('/', (req, res, next) => {
-  // res.render('index', { title: 'Express' });
-  res.redirect('/division');
-});
-
-router.get('/division', (req, res, next) => {
-  res.render('division', { 
-    title: 'Rozkrój',  
-    version: meta.version 
+const configureRoute = (app, appConfig) => {
+  app.get('/', (req, res, next) => {
+    res.redirect('/division');
   });
-});
+  
+  app.get('/division/:locale?', (req, res, next) => {
+    const locale = req.params.locale;
+    
+    if (locale) {
+      req.setLocale(locale);
+    }
 
-module.exports = router;
+    res.render('division', { 
+      title: res.__('siteTitle'),  
+      locale: req.locale,
+      translations: res.__,
+      version: appConfig.VERSION,
+      changelogUrl: appConfig.CHANGELOG_URL
+    });
+  });  
+}
+
+module.exports = configureRoute;

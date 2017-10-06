@@ -1,0 +1,27 @@
+{
+	"siteTitle": "Cutting stock",
+	"version": "Version",
+	"division": {
+		"header": "Cutting stock solver",
+		"configuration": "Configuration",
+		"calculate": "Calculate",
+		"reset": "Reset",
+		"inputData": "Input data",
+		"result": "Result",
+		"copy": "Copy",
+		"pattern": "Pattern",
+		"amount": "Amount",
+		"waste": "Waste",
+		"referenceElementLength": "Reference element length",
+		"wasteSumInMeters": "Waste sum in meters",
+        "materialSumInMeters": "Sum of material",
+        "referenceElementsNeeded": "Reference elements needed",
+        "calculationDone": "Cutting is done",
+        "dataTableCleared": "Data table cleared",
+        "copiedToClipboard": "Copied to clipboard",
+        "calculationError": "En error occured",
+        "length": "Length",
+        "count": "Count",
+        "ofLength": "Of length {{length}} mm"
+	}
+}
