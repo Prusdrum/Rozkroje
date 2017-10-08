@@ -7,13 +7,21 @@ import PanelHead from '../../components/Panel/PanelHead';
 import PanelBody from '../../components/Panel/PanelBody';
 import HotTable from 'react-handsontable';
 import Glyphicon from '../../components/Glyphicon/Glyphicon';
-import {changeInputTableData} from '../../state/actions';
+import {changeInputTableData, sendData} from '../../state/actions';
+import {isSending} from '../../state/selectors';
 
 class InputData extends Component {
     constructor(props) {
         super(props);
 
         this.onTableChange = this.onTableChange.bind(this);
+        this.sendData = this.sendData.bind(this);
+    }
+
+    sendData(){
+        if (!this.props.isSending) {
+            this.props.sendData();
+        }
     }
 
     onTableChange(changes, source) {
@@ -21,12 +29,30 @@ class InputData extends Component {
             changes.forEach(change => {
                 const row = change[0];
                 const column = change[1];
-                const newValue = change[2];
+                const newValue = change[3];
 
                 this.props.changeInputTableData({
-                    row, column, value: newValue
+                    row, 
+                    column,
+                    value: newValue
                 });
             });
+        }
+    }
+
+    renderSendButton() {
+        if (this.props.isSending) {
+            return (
+                <button className="btn btn-success" type="button">
+                    <Glyphicon type="cog" className="spin" />
+                </button>
+            );
+        } else {
+            return (
+                <button className="btn btn-success" type="button" onClick={this.sendData}>
+                    <span>{I18n.t('division.calculate')}</span>
+                </button>
+            );
         }
     }
 
@@ -60,10 +86,7 @@ class InputData extends Component {
                                     <HotTable root="inputTable" settings={tableOptions}/>
                                 </div>
                                 <div className="col-md-3">
-                                    <button className="btn btn-success" type="button">
-                                        <Glyphicon type="cog" className="spin" />
-                                        <span>{I18n.t('division.calculate')}</span>
-                                    </button>
+                                    {this.renderSendButton()}
                                     <button className="btn btn-danger" type="button">
                                         {I18n.t('division.reset')}
                                     </button>
@@ -78,11 +101,12 @@ class InputData extends Component {
 };
 
 const mapStateToProps = (state) => ({
-
+    isSending: isSending(state)
 });
 
 const mapDispatchToProps = {
-    changeInputTableData
+    changeInputTableData,
+    sendData
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(InputData);

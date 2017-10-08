@@ -13,15 +13,15 @@
 		"amount": "Amount",
 		"waste": "Waste",
 		"referenceElementLength": "Reference element length",
-		"wasteSumInMeters": "Waste sum in meters",
-        "materialSumInMeters": "Sum of material",
-        "referenceElementsNeeded": "Reference elements needed",
+		"wasteSumInMeters": "Waste sum in meters: %{waste} m",
+        "materialSumInMeters": "Sum of material: %{material} m",
+        "referenceElementsNeeded": "Reference elements needed: %{count}",
         "calculationDone": "Cutting is done",
         "dataTableCleared": "Data table cleared",
         "copiedToClipboard": "Copied to clipboard",
         "calculationError": "En error occured",
         "length": "Length",
         "count": "Count",
-        "ofLength": "Of length {{length}} mm"
+        "ofLength": "Of length %{length} mm"
 	}
 }

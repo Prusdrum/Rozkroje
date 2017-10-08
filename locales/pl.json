@@ -13,15 +13,15 @@
         "amount": "Ilość",
         "waste": "Odpad",
         "referenceElementLength": "Długość lagi",
-        "wasteSumInMeters": "Suma odpadu w metrach",
-        "materialSumInMeters": "Suma materiału",
-        "referenceElementsNeeded": "Ilość potrzebnych lag",
+        "wasteSumInMeters": "Suma odpadu w metrach: %{waste} m",
+        "materialSumInMeters": "Suma materiału: %{material} m",
+        "referenceElementsNeeded": "Ilość potrzebnych lag: %{count}",
         "calculationDone": "Wykonano rozkrój",
         "dataTableCleared": "Wyczyszczono tabelę danych",
         "copiedToClipboard": "Skopiowano do schowka",
         "calculationError": "Wystąpił błąd",
         "length": "Długość",
         "count": "Ilość sztuk",
-        "ofLength": "O długości {{length}} mm"
+        "ofLength": "O długości %{length} mm"
 	}
 }

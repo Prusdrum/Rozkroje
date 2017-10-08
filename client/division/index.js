@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import {I18n} from 'react-i18nify';
 import {Provider} from 'react-redux';
 
+import './boot/polyfills';
 import App from './App';
 import createSetTranslations from './boot/setTranslations';
 import createReducers from './boot/createReducers';
