@@ -4,8 +4,19 @@ import Panel from '../../components/Panel/Panel';
 import PanelHead from '../../components/Panel/PanelHead';
 import PanelBody from '../../components/Panel/PanelBody';
 import HotTable from 'react-handsontable';
+import Glyphicon from '../../components/Glyphicon/Glyphicon';
 
 class InputData extends Component {
+    constructor(props) {
+        super(props);
+
+        this.onTableChange = this.onTableChange.bind(this);
+    }
+
+    onTableChange(changes, source) {
+        console.log(changes, source);
+    }
+
     render() {
         const inputHeaders = [`${I18n.t('division.length')} [mm]`, `${I18n.t('division.count')}`];
         const colsCount = inputHeaders.length;
@@ -18,7 +29,8 @@ class InputData extends Component {
             maxCols : colsCount,
             rowHeaders : true,
             colHeaders : inputHeaders,
-            contextMenu : false
+            contextMenu : false,
+            onAfterChange: this.onTableChange
         }
 
         return (
@@ -26,7 +38,7 @@ class InputData extends Component {
                 <div className="col-md-12">
                     <Panel>
                         <PanelHead>
-                            <span className="glyphicon glyphicon-log-in"></span>&nbsp;
+                            <Glyphicon type="log-in" />&nbsp;
                             <span>{I18n.t('division.inputData')}</span> 
                         </PanelHead>
                         <PanelBody>
@@ -36,7 +48,7 @@ class InputData extends Component {
                                 </div>
                                 <div className="col-md-3">
                                     <button className="btn btn-success" type="button">
-                                        <span className="glyphicon glyphicon-cog spin"></span>
+                                        <Glyphicon type="cog" className="spin" />
                                         <span>{I18n.t('division.calculate')}</span>
                                     </button>
                                     <button className="btn btn-danger" type="button">

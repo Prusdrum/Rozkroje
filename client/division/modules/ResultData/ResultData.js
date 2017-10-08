@@ -3,13 +3,14 @@ import {I18n} from 'react-i18nify';
 import Panel from '../../components/Panel/Panel';
 import PanelHead from '../../components/Panel/PanelHead';
 import PanelBody from '../../components/Panel/PanelBody';
+import Glyphicon from '../../components/Glyphicon/Glyphicon';
 
 const ResultData = () => (
     <div className="row">
         <div className="col-md-12">
             <Panel>
                 <PanelHead>
-                    <span className="glyphicon glyphicon-log-out"></span>&nbsp;
+                    <Glyphicon type="log-out"/>&nbsp;
                     <span>{I18n.t('division.result')}</span> 
                 </PanelHead>
                 <PanelBody>
@@ -35,7 +36,7 @@ const ResultData = () => (
                     <div className="row space-below">
                         <div className="col-md-12">
                             <button className="btn btn-default" type="button">
-                                <span className="glyphicon glyphicon-copy"></span>
+                                <Glyphicon type="copy" />
                                 <span>{I18n.t('division.copy')}</span>
                             </button>
                         </div>

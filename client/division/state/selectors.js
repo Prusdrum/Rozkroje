@@ -1,0 +1,1 @@
+export const getReferenceLength = (state) => state.division.referenceLength;
