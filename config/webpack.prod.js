@@ -13,13 +13,13 @@ module.exports = {
     module: {
         rules: [
             {
-               test: /\.(js|jsx)$/, 
-               use: {
-                   loader: 'babel-loader',
-                   options: {
-                       presets: ['env']
-                   }
-               }
+                test: /\.(js|jsx)$/, 
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['env', 'es2015', 'react']
+                    }
+                }
             },
             {
                 test: /\.css$/,
