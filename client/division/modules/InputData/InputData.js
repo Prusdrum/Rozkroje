@@ -1,10 +1,13 @@
 import React, {Component} from 'react';
 import {I18n} from 'react-i18nify';
+import {connect} from 'react-redux';
+
 import Panel from '../../components/Panel/Panel';
 import PanelHead from '../../components/Panel/PanelHead';
 import PanelBody from '../../components/Panel/PanelBody';
 import HotTable from 'react-handsontable';
 import Glyphicon from '../../components/Glyphicon/Glyphicon';
+import {changeInputTableData} from '../../state/actions';
 
 class InputData extends Component {
     constructor(props) {
@@ -14,7 +17,17 @@ class InputData extends Component {
     }
 
     onTableChange(changes, source) {
-        console.log(changes, source);
+        if (source !== 'loadData') {
+            changes.forEach(change => {
+                const row = change[0];
+                const column = change[1];
+                const newValue = change[2];
+
+                this.props.changeInputTableData({
+                    row, column, value: newValue
+                });
+            });
+        }
     }
 
     render() {
@@ -64,4 +77,12 @@ class InputData extends Component {
     }
 };
 
-export default InputData;
+const mapStateToProps = (state) => ({
+
+});
+
+const mapDispatchToProps = {
+    changeInputTableData
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(InputData);
