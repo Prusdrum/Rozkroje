@@ -45,6 +45,7 @@
     "pug": "~2.0.0-beta11",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "react-handsontable": "^0.3.1",
     "react-i18nify": "^1.8.8",
     "serve-favicon": "~2.4.2",
     "style-loader": "^0.18.2",
