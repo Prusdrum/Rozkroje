@@ -1,4 +1,13 @@
-const getConfig = require('./webpack.base');
-const config = getConfig('"development"');
+const config = require('./webpack.base');
+const webpack = require('webpack'); //to access built-in plugins
 
-module.exports = config;
+module.exports = {
+    ...config,
+    plugins: [
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: '"development"'
+            }
+        })
+    ]
+};
