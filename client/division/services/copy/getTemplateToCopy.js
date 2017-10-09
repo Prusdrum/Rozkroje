@@ -7,7 +7,7 @@ export default (results) => {
 
     const body = results.map(result => {
         const elements = result.elements.join(', ');
-        const count = result.count;
+        const count = `x${result.count}`;
         const waste = `${result.waste} mm`;
         return `${elements}\t${count}\t${waste}`;
     }).join('\n');

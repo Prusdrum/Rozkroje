@@ -3,7 +3,7 @@
 /**
  * Module dependencies.
  */
-var serverConfig = require('../config/serverConfig');
+var serverConfig = require('../config/server-config');
 var app = require('../app');
 var debug = require('debug')('rozkroje:server');
 var http = require('http');

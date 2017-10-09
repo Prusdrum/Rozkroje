@@ -1,5 +1,5 @@
 const expect = require('chai').expect; 
-const divisionRequetsModel = require('../../model/divisionRequest');
+const divisionRequetsModel = require('../../model/division-request');
 
 describe('given division requets model', () => {
     describe('when data has incorrect model', () => {
