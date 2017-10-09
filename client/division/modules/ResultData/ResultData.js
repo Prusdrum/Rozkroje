@@ -6,7 +6,8 @@ import PanelHead from '../../components/Panel/PanelHead';
 import PanelBody from '../../components/Panel/PanelBody';
 import Glyphicon from '../../components/Glyphicon/Glyphicon';
 
-import {getCalculatedData, getStatistics} from '../../state/selectors'
+import {getCalculatedData, getStatistics, getReferenceLength} from '../../state/selectors';
+import {copyData} from '../../state/actions';
 
 class ResultData extends Component {
     renderStats() {
@@ -22,6 +23,7 @@ class ResultData extends Component {
                     <p>
                         <span>
                             {I18n.t('division.referenceElementsNeeded', {count: statistics.countSum})}
+                            {` (${I18n.t('division.ofLength', { length: this.props.referenceLength })})`}
                         </span>
                     </p>
                     <p>
@@ -42,7 +44,7 @@ class ResultData extends Component {
                 {this.renderStats()}
                 <div className="row space-below">
                     <div className="col-md-12">
-                        <button className="btn btn-default" type="button">
+                        <button className="btn btn-default" type="button" onClick={this.props.copyData.bind(this)}>
                             <Glyphicon type="copy" />
                             <span>{I18n.t('division.copy')}</span>
                         </button>
@@ -99,8 +101,13 @@ class ResultData extends Component {
 
 const mapStateToProps = (state) => ({
     calculatedData: getCalculatedData(state),
-    statistics: getStatistics(state)
+    statistics: getStatistics(state),
+    referenceLength: getReferenceLength(state)
 });
 
-export default connect(mapStateToProps)(ResultData);
+const mapDispatchToProps = {
+    copyData
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ResultData);
 

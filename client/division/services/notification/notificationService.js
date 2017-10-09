@@ -1,3 +1,8 @@
+const jquery = require('jquery');
+//add jquery to globalspace to make notifyjs working
+window.$ = jquery;
+require('./notify.min');
+
 module.exports = {
     showInfo: (text) => {
         $.notify(text, {

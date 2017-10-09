@@ -22,6 +22,6 @@
         "calculationError": "En error occured",
         "length": "Length",
         "count": "Count",
-        "ofLength": "Of length %{length} mm"
+        "ofLength": "of length %{length} mm"
 	}
 }

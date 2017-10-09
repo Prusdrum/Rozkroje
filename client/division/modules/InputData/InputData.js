@@ -7,7 +7,7 @@ import PanelHead from '../../components/Panel/PanelHead';
 import PanelBody from '../../components/Panel/PanelBody';
 import HotTable from 'react-handsontable';
 import Glyphicon from '../../components/Glyphicon/Glyphicon';
-import {changeInputTableData, sendData} from '../../state/actions';
+import {changeInputTableData, sendData, resetData} from '../../state/actions';
 import {isSending} from '../../state/selectors';
 
 class InputData extends Component {
@@ -16,6 +16,13 @@ class InputData extends Component {
 
         this.onTableChange = this.onTableChange.bind(this);
         this.sendData = this.sendData.bind(this);
+        this.resetData = this.resetData.bind(this);
+
+        this.minRows = 25;
+
+        this.state = {
+            initialData: null
+        };
     }
 
     sendData(){
@@ -40,6 +47,23 @@ class InputData extends Component {
         }
     }
 
+    resetData() {
+        this.props.resetData();
+        this.setState({
+            initialData: this.generateEmptyArray()
+        })
+    }
+
+    generateEmptyArray() {
+        let array = [];
+
+        for (let i = 0; i < this.minRows; i += 1) {
+            array.push([,]);
+        }
+
+        return array;
+    }
+
     renderSendButton() {
         if (this.props.isSending) {
             return (
@@ -60,9 +84,9 @@ class InputData extends Component {
         const inputHeaders = [`${I18n.t('division.length')} [mm]`, `${I18n.t('division.count')}`];
         const colsCount = inputHeaders.length;
 
-        const tableOptions = {
+        let tableOptions = {
             minSpareRows : 1,
-            startRows: 25,
+            startRows: this.minRows,
             minCols : colsCount,
             startCols : colsCount,
             maxCols : colsCount,
@@ -70,6 +94,10 @@ class InputData extends Component {
             colHeaders : inputHeaders,
             contextMenu : false,
             onAfterChange: this.onTableChange
+        }
+
+        if (this.state.initialData) {
+            tableOptions.data = this.state.initialData;
         }
 
         return (
@@ -87,7 +115,7 @@ class InputData extends Component {
                                 </div>
                                 <div className="col-md-3">
                                     {this.renderSendButton()}
-                                    <button className="btn btn-danger" type="button">
+                                    <button className="btn btn-danger" type="button" onClick={this.resetData}>
                                         {I18n.t('division.reset')}
                                     </button>
                                 </div>
@@ -106,7 +134,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     changeInputTableData,
-    sendData
+    sendData,
+    resetData
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(InputData);

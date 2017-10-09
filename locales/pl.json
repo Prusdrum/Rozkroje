@@ -22,6 +22,6 @@
         "calculationError": "Wystąpił błąd",
         "length": "Długość",
         "count": "Ilość sztuk",
-        "ofLength": "O długości %{length} mm"
+        "ofLength": "o długości %{length} mm"
 	}
 }

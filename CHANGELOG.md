@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.6.0] - 2017-10-09
+
+* Introduced React and Redux on client
+
 ## [0.5.1] - 2017-10-06
 
 * Fixed href on language links

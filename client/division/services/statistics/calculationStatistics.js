@@ -1,9 +1,11 @@
 const sum = (a, b) => a + b;
 
 export const getWasteSumInMeters = (result) => {
-    return result.map((element) => {
+    const wasteSumInMilimeters = result.map((element) => {
         return element.waste * element.count;
     }).reduce(sum, 0);
+
+    return wasteSumInMilimeters / 1000;
 }
 
 export const getCountSum = (result) => {
