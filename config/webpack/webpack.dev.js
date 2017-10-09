@@ -1,8 +1,7 @@
 const config = require('./webpack.base');
 const webpack = require('webpack'); //to access built-in plugins
 
-module.exports = {
-    ...config,
+module.exports = Object.assign({}, config, {
     plugins: [
         new webpack.DefinePlugin({
             'process.env': {
@@ -10,4 +9,4 @@ module.exports = {
             }
         })
     ]
-};
+});
