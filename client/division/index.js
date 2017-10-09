@@ -1,35 +1,31 @@
-const divisionAPI = require('./api/division');
-const TableService = require('./service/tableService');
-var Handsontable = require('handsontable');
-const jquery = require('jquery');
-//add jquery to globalspace to make notifyjs working
-window.$ = jquery;
-require('../lib/notify.min');
-require('handsontable/dist/handsontable.full.css');
-require('../app.css'); 
-const ko = require('knockout');
-const _ = require('lodash');
-const tracker = require('./service/tracker');
-const copyService = require('./service/copyService');
-const notifyService = require('./service/notifyService');
-require('./utils/knockout.extenders')(ko);
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {I18n} from 'react-i18nify';
+import {Provider} from 'react-redux';
+
+import './boot/polyfills';
+import App from './App';
+import createSetTranslations from './boot/setTranslations';
+import createReducers from './boot/createReducers';
+import createStore from './boot/createStore';
+import {get} from './services/settings/settings';
+
+import en from '../../locales/en.json';
+import pl from '../../locales/pl.json';
+
+const store = createStore(createReducers());
+
+const currentLocale = get('locale');
+const setTranslations = createSetTranslations(I18n);
+setTranslations({
+    en: en,
+    pl: pl
+}, currentLocale);
+
 const rootTarget = document.querySelector('#app');
-const tableTarget = document.querySelector('#inputTable');
 
-const App = require('./App');
-
-const locale = window.settings.locale;
-
-const injector = {
-    ko: () => ko,
-    text: () => require(`../../locales/${locale}.json`),
-    Handsontable: () => Handsontable,
-    divisionAPI: () => divisionAPI,
-    tableService: () => { return new TableService(Handsontable, _, injector.text); },
-    tracker: () => tracker,
-    copyService: () => copyService,
-    notifyService: () => notifyService,
-    
-}
-
-ko.applyBindings(new App(injector, tableTarget), rootTarget)
+ReactDOM.render(
+    <Provider store={store}>
+        <App />
+    </Provider>, 
+rootTarget);

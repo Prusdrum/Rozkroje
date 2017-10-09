@@ -1,19 +1,14 @@
-const axios = require('axios');
-const _ = require('lodash');
-
-module.exports = {
-    getDivision: (elements, referenceLength) => {
-        const requestBody = mapToRequestData(elements, referenceLength);
-
-        return axios.post('/webapi/division', requestBody).then((response) => {
-            return response.data;
-        });
-    }
+export default (request) => (elements, referenceLength) => {
+    const requestBody = mapToRequestData(elements, referenceLength);
+    
+    return request.post('/webapi/division', requestBody).then((response) => {
+        return response.data;
+    });
 }
 
 const mapToRequestData = (elements, referenceLength) => {
     return {
-        elements: _.map(elements, mapElement),
+        elements: elements.map(mapElement),
         referenceLength: referenceLength
     };
 }
