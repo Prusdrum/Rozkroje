@@ -1,6 +1,6 @@
 {
   "name": "rozkroje",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "engines": {
     "node": "8.6.0",
     "npm": "5.2.0"

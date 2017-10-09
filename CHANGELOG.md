@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.0] - 2017-10-09
+
+* Fixed multiplier sign while copying result data
+* Extracted common webpack configuration 
+* Renamed modules to follow dash style
+* Split calculation modules into smaller parts
+
 ## [0.6.0] - 2017-10-09
 
 * Introduced React and Redux on client
