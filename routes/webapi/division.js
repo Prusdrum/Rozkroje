@@ -1,6 +1,4 @@
-var express = require('express');
-var router = express.Router();
-const divisionRequest = require('../../model/divisionRequest');
+const divisionRequest = require('../../model/division-request');
 const divisionCalc = require('../../service/division');
 
 const configureRoute = (app) => {

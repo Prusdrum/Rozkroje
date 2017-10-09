@@ -1,7 +1,3 @@
-var express = require('express');
-var router = express.Router();
-const meta = require('../package.json');
-
 const configureRoute = (app, appConfig) => {
   app.get('/', (req, res, next) => {
     res.redirect('/division');
