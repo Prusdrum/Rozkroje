@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.8.0] - 2017-10-22
+
+* Moved server side code to server directory. It is possible to better deal with globs from package.json
+
 ## [0.7.0] - 2017-10-09
 
 * Fixed multiplier sign while copying result data
