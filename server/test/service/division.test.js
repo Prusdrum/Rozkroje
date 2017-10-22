@@ -21,14 +21,14 @@ describe('given calculate division', () => {
         it('should calculate division', () => {
             const result = divisionCalc.calculateDivision(data, referenceLength);
 
-            const expcted = [
+            const expected = [
                 { elements: [3500, 3500, 3500, 1250], count: 1 },
                 { elements: [3500, 3500, 2700, 2000], count: 1 },
                 { elements: [2700, 2700, 2700, 2700], count: 1 },
                 { elements: [2000, 2000, 2000, 2000, 1250, 1250, 1250], count: 1 }
             ];
 
-            expect(result).to.deep.equal(expcted);
+            expect(result).to.deep.equal(expected);
         });
     });
 

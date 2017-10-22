@@ -21,7 +21,7 @@ const configureExpressApp = (app) => {
 
     i18n.configure({
         locales: ['en', 'pl'],
-        directory: path.join(__dirname, 'locales'),
+        directory: path.join(__dirname, '..', 'locales'),
         defaultLocale: 'pl',
         objectNotation: true
     });

@@ -1,4 +1,4 @@
-const expect = require('chai').expect; 
+const expect = require('chai').expect;
 const addWaste = require('../../../service/division/add-waste');
 
 describe('given add waste', () => {
@@ -8,7 +8,7 @@ describe('given add waste', () => {
 
         beforeEach(() => {
             pattern = {
-                elements: [2500, 2500, 2500, 2500,1000],
+                elements: [2500, 2500, 2500, 2500, 1000],
                 count: 20
             }
         });

@@ -6,7 +6,7 @@ module.exports = {
         division: './client/division/index.js'
     },
     output: {
-        path: path.join(__dirname, "..", "..", "public", "javascripts"),
+        path: path.join(__dirname, "..", "..", "server", "public", "javascripts"),
         filename: "[name].js",
         chunkFilename: "[id].chunk.js"
     },
