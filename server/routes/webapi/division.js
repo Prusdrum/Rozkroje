@@ -1,5 +1,5 @@
 const divisionRequest = require('../../model/division-request');
-const divisionCalc = require('../../service/division');
+const divisionCalc = require('../../service/division/division');
 
 const configureRoute = (app) => {
   app.get('/webapi/', (req, res, next) => {

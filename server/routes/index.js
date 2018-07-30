@@ -1,6 +1,9 @@
 const configureRoute = (app, appConfig) => {
   app.get('/', (req, res, next) => {
-    res.redirect('/division');
+    res.render('index', {
+      translations: res.__,
+      version: appConfig.VERSION
+    });
   });
   
   app.get('/division/:locale?', (req, res, next) => {

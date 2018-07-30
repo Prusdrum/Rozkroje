@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.8.1] - 2018-07-30
+
+* Small refactor of service code - division service's code is completely in the division directory
+* Added index page
+* Added concurrently to start devevelopment process from one command
+
 ## [0.8.0] - 2017-10-22
 
 * Moved server side code to server directory. It is possible to better deal with globs from package.json

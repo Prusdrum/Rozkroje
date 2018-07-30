@@ -1,6 +1,9 @@
 {
     "siteTitle": "Rozkroje",
     "version": "Wersja",
+	"indexPage": {
+		"goToApp": "Idź do aplikacji"
+	},
 	"division": {
 		"header": "Rozkroje profili",
         "configuration": "Parametry programu",

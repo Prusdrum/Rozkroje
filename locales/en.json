@@ -1,6 +1,9 @@
 {
 	"siteTitle": "Cutting stock",
 	"version": "Version",
+	"indexPage": {
+		"goToApp": "Go to the app"
+	},
 	"division": {
 		"header": "Cutting stock solver",
 		"configuration": "Configuration",

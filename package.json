@@ -7,6 +7,7 @@
   },
   "private": true,
   "scripts": {
+    "dev": "concurrently \"npm run start:dev\" \"npm run client:dev\"",
     "start": "node ./bin/www",
     "start:dev": "nodemon ./bin/www",
     "client:build": "set NODE_ENV=production && node ./node_modules/webpack/bin/webpack.js --config config/webpack/webpack.prod.js",
@@ -60,5 +61,7 @@
     "winston": "2.3.1",
     "zeroclipboard": "2.3.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "concurrently": "3.6.1"
+  }
 }

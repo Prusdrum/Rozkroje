@@ -1,12 +1,12 @@
 const _ = require('lodash');
-const logger = require('./logger');
+const logger = require('../logger');
 const {ElementLongerThanReferenceError, InfiniteLoopBreakerError} = require('./errors');
-const hasAnyElements = require('./division/has-any-elements');
-const removeDuplicates = require('./division/remove-duplicates');
-const reduceByPattern = require('./division/reduce-by-pattern');
-const elementsAreShorterThanReference = require('./division/elements-are-shorter-than-reference');
-const addWaste = require('./division/add-waste');
-const findPattern = require('./division/find-pattern');
+const hasAnyElements = require('./has-any-elements');
+const removeDuplicates = require('./remove-duplicates');
+const reduceByPattern = require('./reduce-by-pattern');
+const elementsAreShorterThanReference = require('./elements-are-shorter-than-reference');
+const addWaste = require('./add-waste');
+const findPattern = require('./find-pattern');
 
 const getDivision = (data, referenceLength) => {
     const division = calculateDivision(removeDuplicates(data), referenceLength);

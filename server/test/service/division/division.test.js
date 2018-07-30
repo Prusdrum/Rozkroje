@@ -1,6 +1,6 @@
 const expect = require('chai').expect; 
-const divisionCalc = require('../../service/division');
-const {ElementLongerThanReferenceError, InfiniteLoopBreakerError} = require('../../service/errors');
+const divisionCalc = require('../../../service/division/division');
+const {ElementLongerThanReferenceError, InfiniteLoopBreakerError} = require('../../../service/division/errors');
 
 describe('given calculate division', () => {
     describe('when has elements that gives only one instance of pattern', () => {
