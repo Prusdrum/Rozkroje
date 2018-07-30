@@ -1,10 +1,12 @@
 const path = require('path');
 const webpack = require('webpack'); //to access built-in plugins
+const config = require('../server-config');
 
 module.exports = {
     entry: {
         division: './client/division/index.js'
     },
+    mode: config.MODE,
     output: {
         path: path.join(__dirname, "..", "..", "server", "public", "javascripts"),
         filename: "[name].js",

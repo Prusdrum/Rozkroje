@@ -5,6 +5,7 @@
 * Small refactor of service code - division service's code is completely in the division directory
 * Added index page
 * Added concurrently to start devevelopment process from one command
+* Updated webpack to 4.16.3
 
 ## [0.8.0] - 2017-10-22
 
