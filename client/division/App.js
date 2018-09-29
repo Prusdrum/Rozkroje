@@ -7,8 +7,7 @@ import InputData from './modules/InputData/InputData';
 import ResultData from './modules/ResultData/ResultData';
 
 const App = () => (
-    <div className="container">
-        <LanguagePicker />
+    <div>
         <Header />
         <Configuration />
         <InputData />

@@ -1,0 +1,14 @@
+@import "../../services/ui/vars";
+
+.header {
+  background-color: $blue;
+}
+
+.headerText {
+  font-size: 30px;
+  font-family: $font-primary;
+  letter-spacing: 0.7px;
+  color: $white;
+  text-transform: uppercase;
+  line-height: 45px;
+}

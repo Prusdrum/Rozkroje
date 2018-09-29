@@ -4,7 +4,7 @@ const configureRoute = (app, appConfig) => {
   });
   
   app.get('/division/:locale?', (req, res, next) => {
-    const locale = req.params.locale;
+    const locale = req.params.locale || 'pl';
     
     if (locale) {
       req.setLocale(locale);

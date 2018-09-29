@@ -1,9 +1,10 @@
 import React from 'react';
 import {I18n} from 'react-i18nify';
+import Styles from './Header.scss';
 
 const Header = () => (
-    <div className="jumbotron text-center">
-        <h1>{I18n.t('division.header')}</h1>
+    <div className={Styles.header}>
+        <h1 className={Styles.headerText}>{I18n.t('siteTitle')}</h1>
     </div>
 );
 
