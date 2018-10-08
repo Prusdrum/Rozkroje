@@ -5,12 +5,14 @@ import Header from './modules/Header/Header';
 import Configuration from './modules/Configuration/Configuration';
 import InputData from './modules/InputData/InputData';
 import ResultData from './modules/ResultData/ResultData';
+import Title from './modules/Title/Title';
 import Container from './components/Container/Container'
 
 const App = () => (
-    <div>
+    <div> 
         <Header />
         <Container>
+            <Title />
             <Configuration />
             <InputData />
             <ResultData /> 
