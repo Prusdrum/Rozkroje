@@ -1,5 +1,5 @@
 const serverConfig = {
-    PORT: 3000
+    PORT: 3003
 };
 
 module.exports = serverConfig;
