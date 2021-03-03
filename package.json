@@ -44,7 +44,7 @@
     "numbro": "1.11.0",
     "pikaday": "1.6.1",
     "promise-polyfill": "6.0.2",
-    "pug": "~2.0.0-beta11",
+    "pug": "~3.0.1",
     "react": "16.0.0",
     "react-dom": "16.0.0",
     "react-handsontable": "0.3.1",
