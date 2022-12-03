@@ -39,7 +39,7 @@
     "knockout": "3.4.2",
     "lodash": "4.17.4",
     "mocha": "3.4.2",
-    "moment": "2.18.1",
+    "moment": "2.29.4",
     "morgan": "~1.8.1",
     "numbro": "1.11.0",
     "pikaday": "1.6.1",
