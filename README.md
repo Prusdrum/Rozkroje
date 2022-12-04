@@ -8,5 +8,3 @@ To deploy:
 npm install
 fly deploy
 ```
-
-https://rozkroje.fly.dev/division
